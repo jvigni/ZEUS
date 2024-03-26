@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class Equipable : MonoBehaviour
 {
-    protected GameObject Wielder;
+    [SerializeField] protected GameObject Wielder;
 
     public virtual void Equip(GameObject wielder)
     {
-        Wielder = wielder;
+        //Wielder = wielder;
         gameObject.SetActive(true);
         OnEquip();
     }
