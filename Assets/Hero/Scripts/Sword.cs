@@ -37,7 +37,6 @@ public class Sword : Weapon
 
     async void LeftClickAttack() // TODO revisar. await no va?
     {
-        Debug.Log("left click attk");
         if (isAttacking) return;
 
         isAttacking = true;
