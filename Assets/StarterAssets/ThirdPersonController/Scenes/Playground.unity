@@ -1159,6 +1159,10 @@ PrefabInstance:
       propertyPath: Equiped
       value: 
       objectReference: {fileID: 1414691253}
+    - target: {fileID: 8524942222192960184, guid: 989ce5d37d1c2b3478ebea936dad8879, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
