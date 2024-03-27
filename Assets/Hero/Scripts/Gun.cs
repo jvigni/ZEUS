@@ -8,7 +8,6 @@ public class Gun : Weapon
     ThirdPersonController _thirdPersonController;
     HeroAimManager _aimManager;
     Animator _animator;
-    bool rifleOut;
 
     void Awake()
     {
@@ -18,26 +17,26 @@ public class Gun : Weapon
 
     void Update()
     {
-        if (rifleOut && Input.GetKeyDown(KeyCode.Mouse1))
+        if (!_animator.GetBool("RifleOn")) return;
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
             _aimManager.Aim(true);
 
-        if (rifleOut && Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             _aimManager.Aim(false);
-            rifleOut = false;
         }
     }
 
     public override void OnEquip()
     {
-        _animator.SetTrigger("RifleOn");
-        rifleOut = true;
+        _animator.SetBool("RifleOn", true);
         //Wielder.GetComponent<AimZoomController>().enabled = true;
     }
 
     public override void OnUnequip()
     {
-        _animator.SetTrigger("RifleOff");
+        _animator.SetBool("RifleOn", false);
         //Wielder.GetComponent<AimZoomController>().enabled = false;
     }
 }
