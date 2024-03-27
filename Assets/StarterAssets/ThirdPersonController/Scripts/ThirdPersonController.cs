@@ -275,6 +275,8 @@ namespace StarterAssets
                 // rotate to face input direction relative to camera position
                 if (RotateOnMove)
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                else // rotate with camera:
+                    transform.rotation = _mainCamera.transform.rotation;
 
                 //if (CharacterRotationFollowsCamera)
                 //    transform.rotation = _mainCamera.transform.rotation;

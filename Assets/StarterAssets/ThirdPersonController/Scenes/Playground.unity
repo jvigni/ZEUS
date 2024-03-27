@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 2109690254}
   - component: {fileID: 2109690253}
   m_Layer: 0
-  m_Name: DebugTransform
+  m_Name: AimDebugTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2016,7 +2016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 2
   SprintSpeed: 5.335
-  CharacterRotationFollowsCamera: 0
+  RotateOnMove: 0
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}

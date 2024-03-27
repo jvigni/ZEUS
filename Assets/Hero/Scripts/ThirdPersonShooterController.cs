@@ -23,17 +23,26 @@ public class ThirdPersonShooterController : MonoBehaviour
     void Update()
     {
         var isAiming = Input.GetKey(KeyCode.Mouse1);
-        Aim(isAiming);
-
-
+        HandleAim(isAiming);
     }
 
-    void Aim(bool isAiming)
+    void HandleAim(bool isAiming)
     {
         _aimCamera.SetActive(isAiming);
-        _thirdPersonController.RotateOnMove = isAiming;
+        _thirdPersonController.RotateOnMove = !isAiming;
         _crosshairImg.gameObject.SetActive(isAiming);
 
+        if (!isAiming)
+            return;
+
+        Vector3 worldAimTarget = CalculateMouseWorldPosition();
+        worldAimTarget.y = transform.position.y;
+        Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+        transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+    }
+
+    Vector3 CalculateMouseWorldPosition()
+    {
         var mouseWorldPosition = Vector3.zero;
         var screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
@@ -42,10 +51,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
         }
-
-        Vector3 worldAimTarget = mouseWorldPosition;
-        worldAimTarget.y = transform.position.y;
-        Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
-        transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+        return mouseWorldPosition;
     }
 }
