@@ -25,10 +25,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         var isAiming = Input.GetKey(KeyCode.Mouse1);
         Aim(isAiming);
 
-        var screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderLayerMask))
-            debugTransform.position = raycastHit.point;
+
     }
 
     void Aim(bool isAiming)
@@ -36,5 +33,19 @@ public class ThirdPersonShooterController : MonoBehaviour
         _aimCamera.SetActive(isAiming);
         _thirdPersonController.CharacterRotationFollowsCamera = isAiming;
         _crosshairImg.gameObject.SetActive(isAiming);
+
+        var mouseWorldPosition = Vector3.zero;
+        var screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderLayerMask))
+        {
+            debugTransform.position = raycastHit.point;
+            mouseWorldPosition = raycastHit.point;
+        }
+
+        Vector3 worldAimTarget = mouseWorldPosition;
+        worldAimTarget.y = transform.position.y;
+        Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+        transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
     }
 }
