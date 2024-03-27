@@ -168,7 +168,7 @@ namespace StarterAssets
             if (Input.GetKeyDown(KeyCode.F)) // freelook/shooter camera switch
             {
                 characterRotationFollowsCamera = !characterRotationFollowsCamera;
-                GetComponent<Animator>().SetBool("Freelook", characterRotationFollowsCamera);
+                GetComponent<Animator>().SetBool("Freelook", !characterRotationFollowsCamera);
             }
         }
 
