@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -20,6 +21,8 @@ namespace StarterAssets
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
+
+        public bool characterRotationFollowsCamera;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -60,6 +63,7 @@ namespace StarterAssets
         public LayerMask GroundLayers;
 
         [Header("Cinemachine")]
+
         [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
         public GameObject CinemachineCameraTarget;
 
@@ -122,6 +126,7 @@ namespace StarterAssets
             }
         }
 
+        public Cinemachine.AxisState xAxis, yAxis;
 
         private void Awake()
         {
@@ -159,6 +164,12 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+
+            if (Input.GetKeyDown(KeyCode.F)) // freelook/shooter camera switch
+            {
+                characterRotationFollowsCamera = !characterRotationFollowsCamera;
+                GetComponent<Animator>().SetBool("Freelook", characterRotationFollowsCamera);
+            }
         }
 
         private void LateUpdate()
@@ -268,6 +279,9 @@ namespace StarterAssets
 
                 // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+
+                if (characterRotationFollowsCamera)
+                    transform.rotation = _mainCamera.transform.rotation;
             }
 
 
