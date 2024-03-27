@@ -5,38 +5,28 @@ using StarterAssets;
 
 public class Gun : Weapon
 {
-    ThirdPersonController _thirdPersonController;
-    HeroAimManager _aimManager;
     Animator _animator;
 
     void Awake()
     {
-        _aimManager = Wielder.GetComponent<HeroAimManager>();
         _animator = Wielder.GetComponent<Animator>();
     }
 
-    void Update()
+    public override void LClickDown()
     {
-        if (!_animator.GetBool("RifleOn")) return;
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-            _aimManager.Aim(true);
-
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            _aimManager.Aim(false);
-        }
+        base.LClickDown();
+        Debug.Log("PEW PEW"); // TODO
     }
 
     public override void OnEquip()
     {
         _animator.SetBool("RifleOn", true);
-        //Wielder.GetComponent<AimZoomController>().enabled = true;
+        Wielder.GetComponent<ThirdPersonShooterController>().enabled = true;
     }
 
     public override void OnUnequip()
     {
         _animator.SetBool("RifleOn", false);
-        //Wielder.GetComponent<AimZoomController>().enabled = false;
+        Wielder.GetComponent<ThirdPersonShooterController>().enabled = false;
     }
 }

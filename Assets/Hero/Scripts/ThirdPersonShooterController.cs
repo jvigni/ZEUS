@@ -10,6 +10,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] public GameObject _aimCamera;
     [SerializeField] public Image _crosshairImg;
     [SerializeField] private LayerMask _aimColliderLayerMask;
+    Animator _animator;
     ThirdPersonController _thirdPersonController;
     //[SerializeField] public float normalSensitivity = 1f;
     //[SerializeField] public float aimSensitivity = .5f;
@@ -17,6 +18,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     void Awake()
     {
         _thirdPersonController = GetComponent<ThirdPersonController>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,15 +35,19 @@ public class ThirdPersonShooterController : MonoBehaviour
         _crosshairImg.gameObject.SetActive(isAiming);
 
         if (!isAiming)
+        {
+            _animator.SetBool("Aiming", false);
             return;
+        }
 
-        Vector3 worldAimTarget = CalculateMouseWorldPosition();
+        _animator.SetBool("Aiming", true);
+        Vector3 worldAimTarget = CalculateWorldAimPosition();
         worldAimTarget.y = transform.position.y;
         Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
         transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
     }
 
-    Vector3 CalculateMouseWorldPosition()
+    Vector3 CalculateWorldAimPosition()
     {
         var mouseWorldPosition = Vector3.zero;
         var screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
