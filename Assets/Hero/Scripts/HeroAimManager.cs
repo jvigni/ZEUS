@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class HeroAimManager : MonoBehaviour
 {
-    [SerializeField] GameObject aimCam;
-    [SerializeField] Image crosshairImg;
-    [SerializeField] private float normalSensitivity;
-    [SerializeField] private float aimSensitivity;
+    [SerializeField] public GameObject aimCam;
+    [SerializeField] public Image crosshairImg;
+    [SerializeField] public float normalSensitivity = 1f;
+    [SerializeField] public float aimSensitivity = .5f;
 
     public void Aim(bool aim)
     {

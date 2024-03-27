@@ -4,15 +4,20 @@ using UnityEngine.PlayerLoop;
 
 public class Gun : Weapon
 {
-    [SerializeField] HeroAimManager aimManager;
+    [SerializeField] HeroAimManager _aimManager;
+
+    void Start()
+    {
+        _aimManager = Wielder.GetComponent<HeroAimManager>();
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
-            aimManager.Aim(true);
+            _aimManager.Aim(true);
 
         if (Input.GetKeyUp(KeyCode.Mouse1))
-            aimManager.Aim(false);
+            _aimManager.Aim(false);
     }
 
     public override void OnEquip()
