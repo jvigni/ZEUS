@@ -2048,7 +2048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 2
   SprintSpeed: 5.335
-  RotateOnMove: 0
+  RotateOnMove: 1
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
@@ -2738,7 +2738,6 @@ GameObject:
   - component: {fileID: 4978736413015092501}
   - component: {fileID: 6370358408364938899}
   - component: {fileID: 8206886942663569715}
-  - component: {fileID: 6982812147933622150}
   - component: {fileID: 6982812147933622149}
   - component: {fileID: 8206886942663569716}
   m_Layer: 3
@@ -3722,22 +3721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6b481b807344e47a1eca6cf89da53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6982812147933622150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4267640400951855647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5f090a3a84f45743960b08b1976d8b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aimCam: {fileID: 1716468892}
-  crosshairImg: {fileID: 537639331}
-  normalSensitivity: 1
-  aimSensitivity: 0.5
 --- !u!4 &7049580721226066667
 Transform:
   m_ObjectHideFlags: 0
@@ -4116,7 +4099,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4267640400951855647}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a00bfd9cbd1ef1408642d46407d71c2, type: 3}
   m_Name: 
