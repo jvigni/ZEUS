@@ -999,7 +999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1200260564779906, guid: d0838917cb453dc4cad3e49b1be3f4b4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1200260564779906, guid: d0838917cb453dc4cad3e49b1be3f4b4, type: 3}
       propertyPath: m_TagString
@@ -3063,8 +3063,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1738367300}
   - {fileID: 3625537913723484186}
+  - {fileID: 1738367300}
   - {fileID: 9116058258738676322}
   - {fileID: 8857185824907344106}
   - {fileID: 2556178280956002701}

@@ -1,16 +1,18 @@
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.PlayerLoop;
+using StarterAssets;
 
 public class Gun : Weapon
 {
+    ThirdPersonController _thirdPersonController;
     HeroAimManager _aimManager;
     Animator _animator;
 
     void Awake()
     {
-        _animator = Wielder.GetComponent<Animator>();
         _aimManager = Wielder.GetComponent<HeroAimManager>();
+        _animator = Wielder.GetComponent<Animator>();
     }
 
     void Update()
@@ -24,14 +26,13 @@ public class Gun : Weapon
 
     public override void OnEquip()
     {
-        Debug.Log($"GUN ON EQUIP: {_animator}");
-        _animator.SetBool("Rifle", true);
+        _animator.SetBool("RifleDraw", true);
         //Wielder.GetComponent<AimZoomController>().enabled = true;
     }
 
     public override void OnUnequip()
     {
-        _animator.SetBool("Rifle", false);
+        _animator.SetBool("RifleRest", false);
         //Wielder.GetComponent<AimZoomController>().enabled = false;
     }
 }

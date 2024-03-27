@@ -22,7 +22,7 @@ namespace StarterAssets
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
 
-        public bool characterRotationFollowsCamera;
+        public bool CharacterRotationFollowsCamera;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -167,8 +167,8 @@ namespace StarterAssets
 
             if (Input.GetKeyDown(KeyCode.F)) // freelook/shooter camera switch
             {
-                characterRotationFollowsCamera = !characterRotationFollowsCamera;
-                GetComponent<Animator>().SetBool("Freelook", !characterRotationFollowsCamera);
+                CharacterRotationFollowsCamera = !CharacterRotationFollowsCamera;
+                GetComponent<Animator>().SetBool("Freelook", !CharacterRotationFollowsCamera);
             }
         }
 
@@ -280,7 +280,7 @@ namespace StarterAssets
                 // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
-                if (characterRotationFollowsCamera)
+                if (CharacterRotationFollowsCamera)
                     transform.rotation = _mainCamera.transform.rotation;
             }
 
