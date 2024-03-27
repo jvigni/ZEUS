@@ -26,7 +26,8 @@ public class HeroAimManager : MonoBehaviour
         if (aim)
         {
             aimCam.SetActive(true);
-            _thirdPersonController.CharacterRotationFollowsCamera = true;
+            //_thirdPersonController.CharacterRotationFollowsCamera = true;
+            _thirdPersonController.RotateOnMove = true;
             crosshairImg.gameObject.SetActive(true);
             _animator.SetBool("RifleAim", true);
 
@@ -34,7 +35,8 @@ public class HeroAimManager : MonoBehaviour
         else
         {
             aimCam.SetActive(false);
-            _thirdPersonController.CharacterRotationFollowsCamera = false;
+            //_thirdPersonController.CharacterRotationFollowsCamera = false;
+            _thirdPersonController.RotateOnMove = false;
             crosshairImg.gameObject.SetActive(false);
             _animator.SetBool("RifleAim", false);
         }

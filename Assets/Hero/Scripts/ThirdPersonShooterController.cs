@@ -31,7 +31,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     void Aim(bool isAiming)
     {
         _aimCamera.SetActive(isAiming);
-        _thirdPersonController.CharacterRotationFollowsCamera = isAiming;
+        _thirdPersonController.RotateOnMove = isAiming;
         _crosshairImg.gameObject.SetActive(isAiming);
 
         var mouseWorldPosition = Vector3.zero;
