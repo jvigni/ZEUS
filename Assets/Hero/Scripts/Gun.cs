@@ -4,10 +4,12 @@ using UnityEngine.PlayerLoop;
 
 public class Gun : Weapon
 {
-    [SerializeField] HeroAimManager _aimManager;
+    HeroAimManager _aimManager;
+    Animator _animator;
 
-    void Start()
+    void Awake()
     {
+        _animator = Wielder.GetComponent<Animator>();
         _aimManager = Wielder.GetComponent<HeroAimManager>();
     }
 
@@ -22,11 +24,14 @@ public class Gun : Weapon
 
     public override void OnEquip()
     {
+        Debug.Log($"GUN ON EQUIP: {_animator}");
+        _animator.SetBool("Rifle", true);
         //Wielder.GetComponent<AimZoomController>().enabled = true;
     }
 
     public override void OnUnequip()
     {
+        _animator.SetBool("Rifle", false);
         //Wielder.GetComponent<AimZoomController>().enabled = false;
     }
 }
