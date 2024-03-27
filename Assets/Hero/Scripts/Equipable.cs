@@ -17,6 +17,15 @@ public abstract class Equipable : MonoBehaviour
         OnUnequip();
     }
 
+
+    public virtual void LClickPressed() { }
+    public virtual void LClickDown() { }
+    public virtual void LClickUp() { }
+
+    public virtual void RClickPressed() { }
+    public virtual void RClickDown() { }
+    public virtual void RClickUp() { }
+
     public virtual void OnAnimationEnd() { }
     public virtual void OnAnimationHit() { }
     public virtual void OnEquip() { }
