@@ -25,6 +25,7 @@ public class HeroAimManager : MonoBehaviour
     {
         if (aim)
         {
+            Debug.Log("AIM ON");
             aimCam.SetActive(true);
             _thirdPersonController.CharacterRotationFollowsCamera = true;
             crosshairImg.gameObject.SetActive(true);
@@ -33,6 +34,7 @@ public class HeroAimManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("AIM OFF");
             aimCam.SetActive(false);
             _thirdPersonController.CharacterRotationFollowsCamera = false;
             crosshairImg.gameObject.SetActive(false);
