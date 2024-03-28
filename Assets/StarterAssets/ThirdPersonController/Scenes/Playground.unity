@@ -548,6 +548,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1258946362391620, guid: 3ff34848642e0ba42be49630dade195d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1736141792303530, guid: 3ff34848642e0ba42be49630dade195d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -884,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e267abc53d55764496f83f750c5b0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  helmet: {fileID: 86322768881849090}
 --- !u!4 &623915972
 Transform:
   m_ObjectHideFlags: 0
