@@ -29,8 +29,8 @@ public class Gun : Weapon
     {
         base.LClickIsPressed();
         _shooterController.Aim();
-        if (_shooterController.IsReadyToShoot)
-            Shoot();
+        //if (_shooterController.IsReadyToShoot) // Anim event deprecated (muy bugoso)
+        Shoot();
     }
 
     public override void LClickUp()

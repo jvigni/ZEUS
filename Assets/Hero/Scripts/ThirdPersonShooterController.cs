@@ -12,7 +12,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private LayerMask _aimColliderLayerMask;
     Animator _animator;
     ThirdPersonController _thirdPersonController;
-    public bool IsReadyToShoot;
     //[SerializeField] public float normalSensitivity = 1f;
     //[SerializeField] public float aimSensitivity = .5f;
 
@@ -45,7 +44,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void StopAiming()
     {
-        IsReadyToShoot = false;
         _aimCamera.SetActive(false);
         _thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
@@ -80,10 +78,5 @@ public class ThirdPersonShooterController : MonoBehaviour
             mouseWorldPosition = ray.direction * 999f;
         }
         return mouseWorldPosition;
-    }
-
-    public void Anim_ReadyToShoot()
-    {
-        IsReadyToShoot = true;
     }
 }
