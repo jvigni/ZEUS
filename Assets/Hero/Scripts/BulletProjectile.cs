@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletProjectile : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] int damage;
     Rigidbody _bulletRigidbody;
     public GameObject _owner;
 
@@ -27,7 +28,7 @@ public class BulletProjectile : MonoBehaviour
     {
         var lifeform = other.GetComponent<Lifeform>();
         if (lifeform)
-            lifeform.OnHit(_owner);
+            lifeform.TakeDamage(damage, gameObject);
 
         Destroy(gameObject);
     }

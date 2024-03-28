@@ -1,25 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Lifeform : MonoBehaviour
 {
-    int life = 10;
+    [SerializeField] int maxHp = 100;
+    public event Action OnDeath;
+    public event Action<int> OnHealthLost;
+    int hp;
 
-    void Start()
+    public bool IsAlive() => hp > 0;
+
+    void Awake()
     {
-
+        hp = maxHp;
     }
 
-    void Update()
+    public void TakeDamage(int damage, GameObject attacker)
     {
-
+        hp -= damage;
+        ColorChangeOnHit();
+        OnHealthLost?.Invoke(damage);
+        if (!IsAlive())
+            Death();
     }
 
-    public void OnHit(GameObject agressor)
+    void Death()
     {
-        Debug.Log($"{gameObject.name} hitted by {agressor.name}");
-        if (life < 0)
-            Destroy(gameObject);
+        OnDeath?.Invoke();
+        Destroy(gameObject);
+    }
+
+    async void ColorChangeOnHit()
+    {
+        Debug.Log("RED..");
+        await Task.Delay(1000);
+        Debug.Log("NORMAL.");
     }
 }
