@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Lifeform : MonoBehaviour
 {
+    [SerializeField] Renderer renderer;
     [SerializeField] int maxHp = 100;
     public event Action OnDeath;
     public event Action<int> OnHealthLost;
     int hp;
+    int colorHitCountdown;
 
     public bool IsAlive() => hp > 0;
 
@@ -18,10 +21,16 @@ public class Lifeform : MonoBehaviour
         hp = maxHp;
     }
 
+    void Update()
+    {
+        if (colorHitCountdown > 0)
+            colorHitCountdown--;
+    }
+
+
     public void TakeDamage(int damage, GameObject attacker)
     {
         hp -= damage;
-        ColorChangeOnHit();
         OnHealthLost?.Invoke(damage);
         if (!IsAlive())
             Death();
@@ -31,12 +40,5 @@ public class Lifeform : MonoBehaviour
     {
         OnDeath?.Invoke();
         Destroy(gameObject);
-    }
-
-    async void ColorChangeOnHit()
-    {
-        Debug.Log("RED..");
-        await Task.Delay(1000);
-        Debug.Log("NORMAL.");
     }
 }

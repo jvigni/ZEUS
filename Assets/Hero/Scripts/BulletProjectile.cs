@@ -6,6 +6,7 @@ public class BulletProjectile : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] int damage;
+    [SerializeField] ParticleSystem hitExplosion;
     Rigidbody _bulletRigidbody;
     public GameObject _owner;
 
@@ -30,6 +31,7 @@ public class BulletProjectile : MonoBehaviour
         if (lifeform)
             lifeform.TakeDamage(damage, gameObject);
 
+        Instantiate(hitExplosion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

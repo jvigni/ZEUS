@@ -96,7 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6068f9abae13f5a4f91b606e0c362d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 40
+  damage: 20
+  hitExplosion: {fileID: 198009975391485926, guid: 2d3b532d292678541b56359cac1d6880, type: 3}
   _owner: {fileID: 0}
 --- !u!1 &5368096608817120402
 GameObject:
