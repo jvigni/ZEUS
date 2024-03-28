@@ -6,6 +6,7 @@ public class BulletProjectile : MonoBehaviour
 {
     [SerializeField] float speed;
     Rigidbody _bulletRigidbody;
+    public GameObject _owner;
 
     void Awake()
     {
@@ -17,8 +18,17 @@ public class BulletProjectile : MonoBehaviour
         _bulletRigidbody.velocity = transform.forward * speed;
     }
 
+    public void OnShooted(GameObject owner)
+    {
+        _owner = owner;
+    }
+
     void OnTriggerEnter(Collider other)
     {
+        var lifeform = other.GetComponent<Lifeform>();
+        if (lifeform)
+            lifeform.OnHit(_owner);
+
         Destroy(gameObject);
     }
 }

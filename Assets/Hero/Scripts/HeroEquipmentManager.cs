@@ -52,7 +52,6 @@ public class HeroEquipmentManager : MonoBehaviour
 
     void Equip(Equipable newEquipable)
     {
-        Debug.Log($"Equiping {newEquipable}");
         if (Equiped != null)
             Equiped.Unequip();
 
