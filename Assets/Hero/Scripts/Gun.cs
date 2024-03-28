@@ -24,15 +24,9 @@ public class Gun : Weapon
             rateOfFireCountdown--;
     }
 
-    public override void LClickDown()
+    public override void LClickIsPressed()
     {
-        base.LClickDown();
-        Shoot();
-    }
-
-    public override void LClickPressed()
-    {
-        base.LClickPressed();
+        base.LClickIsPressed();
         Shoot();
     }
 

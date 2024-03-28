@@ -31,7 +31,7 @@ public class BulletProjectile : MonoBehaviour
         InvokeRepeating("SelfDestroyCheck", 0, 1);
     }
 
-    void SelfDestroyCheck()
+    void SelfDestroyCheck() // TODO se puede mejorar. demora mas de lo que dice
     {
         selfDestroyCounter++;
         if (selfDestroyCounter > secondsToSelfDestroy)

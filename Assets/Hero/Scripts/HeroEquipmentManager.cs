@@ -17,18 +17,14 @@ public class HeroEquipmentManager : MonoBehaviour
     {
         if (Equiped == null) return;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            Equiped.LClickDown();
         if (Input.GetKey(KeyCode.Mouse0))
-            Equiped.LClickPressed();
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+            Equiped.LClickIsPressed();
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
             Equiped.LClickUp();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            Equiped.RClickDown();
         if (Input.GetKey(KeyCode.Mouse0))
-            Equiped.RClickPressed();
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+            Equiped.RClickIsPressed();
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
             Equiped.RClickUp();
     }
 

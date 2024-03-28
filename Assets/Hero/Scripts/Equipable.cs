@@ -18,12 +18,10 @@ public abstract class Equipable : MonoBehaviour
     }
 
 
-    public virtual void LClickPressed() { }
-    public virtual void LClickDown() { }
+    public virtual void LClickIsPressed() { }
     public virtual void LClickUp() { }
 
-    public virtual void RClickPressed() { }
-    public virtual void RClickDown() { }
+    public virtual void RClickIsPressed() { }
     public virtual void RClickUp() { }
 
     public virtual void OnAnimationEnd() { }

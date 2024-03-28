@@ -10,6 +10,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] public GameObject _aimCamera;
     [SerializeField] public Image _crosshairImg;
     [SerializeField] private LayerMask _aimColliderLayerMask;
+    bool _isAiming;
     Animator _animator;
     ThirdPersonController _thirdPersonController;
     //[SerializeField] public float normalSensitivity = 1f;
@@ -24,10 +25,11 @@ public class ThirdPersonShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var isAiming = Input.GetKey(KeyCode.Mouse1);
-        HandleAim(isAiming);
+        _isAiming = Input.GetKey(KeyCode.Mouse1);
+        HandleAim(_isAiming);
     }
 
+    // TODO: si hago click izq sin estar apuntando? dispara al piso y c bugea
     public void Shoot(BulletProjectile projectile, Vector3 spawnPos)
     {
         var aimDir = (CalculateWorldAimPosition() - spawnPos).normalized;
