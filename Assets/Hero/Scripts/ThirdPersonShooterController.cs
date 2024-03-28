@@ -10,9 +10,9 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] public GameObject _aimCamera;
     [SerializeField] public Image _crosshairImg;
     [SerializeField] private LayerMask _aimColliderLayerMask;
-    bool _isAiming;
     Animator _animator;
     ThirdPersonController _thirdPersonController;
+    public bool IsReadyToShoot;
     //[SerializeField] public float normalSensitivity = 1f;
     //[SerializeField] public float aimSensitivity = .5f;
 
@@ -25,30 +25,41 @@ public class ThirdPersonShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         _isAiming = Input.GetKey(KeyCode.Mouse1);
-        HandleAim(_isAiming);
+        if (_isAiming)
+        {
+            _aimCamera.SetActive(_isAiming);
+            _thirdPersonController.RotateOnMove = !_isAiming;
+            _crosshairImg.gameObject.SetActive(_isAiming);
+            HandleAim(true);
+        }*/
     }
 
-    // TODO: si hago click izq sin estar apuntando? dispara al piso y c bugea
     public void Shoot(BulletProjectile projectile, Vector3 spawnPos)
     {
+        Debug.Log("PEW PEW");
         var aimDir = (CalculateWorldAimPosition() - spawnPos).normalized;
         var instantiatedProjectile = Instantiate(projectile, spawnPos, Quaternion.LookRotation(aimDir));
         instantiatedProjectile.OnShooted(gameObject);
     }
 
-    void HandleAim(bool isAiming)
+    public void StopAiming()
     {
-        _aimCamera.SetActive(isAiming);
-        _thirdPersonController.RotateOnMove = !isAiming;
-        _crosshairImg.gameObject.SetActive(isAiming);
+        IsReadyToShoot = false;
+        //Debug.Log("STOP AIM");
+        _aimCamera.SetActive(false);
+        _thirdPersonController.RotateOnMove = true;
+        _crosshairImg.gameObject.SetActive(false);
+        _animator.SetBool("Aiming", false);
+    }
 
-        if (!isAiming)
-        {
-            _animator.SetBool("Aiming", false);
-            return;
-        }
-
+    public void Aim()
+    {
+        //Debug.Log("AIM");
+        _aimCamera.SetActive(true);
+        _thirdPersonController.RotateOnMove = false;
+        _crosshairImg.gameObject.SetActive(true);
         _animator.SetBool("Aiming", true);
         Vector3 worldAimTarget = CalculateWorldAimPosition();
         worldAimTarget.y = transform.position.y;
@@ -72,5 +83,11 @@ public class ThirdPersonShooterController : MonoBehaviour
             mouseWorldPosition = ray.direction * 999f;
         }
         return mouseWorldPosition;
+    }
+
+    public void Anim_ReadyToShoot() // TODO
+    {
+        Debug.Log("READY TO SHOOT");
+        IsReadyToShoot = true;
     }
 }

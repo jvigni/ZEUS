@@ -2,6 +2,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.PlayerLoop;
 using StarterAssets;
+using System.Threading.Tasks;
 
 public class Gun : Weapon
 {
@@ -24,16 +25,35 @@ public class Gun : Weapon
             rateOfFireCountdown--;
     }
 
-    public override void LClickIsPressed()
+    public async override void LClickIsPressed()
     {
         base.LClickIsPressed();
+        _shooterController.Aim();
         Shoot();
+    }
+
+    public override void LClickUp()
+    {
+        base.LClickUp();
+        _shooterController.StopAiming();
+    }
+
+    public override void RClickIsPressed()
+    {
+        base.RClickIsPressed();
+        _shooterController.Aim();
+    }
+
+    public override void RClickUp()
+    {
+        base.RClickUp();
+        _shooterController.StopAiming();
     }
 
     void Shoot()
     {
-        if (rateOfFireCountdown > 0)
-            return;
+        if (!_shooterController.IsReadyToShoot) return;
+        if (rateOfFireCountdown > 0) return;
 
         rateOfFireCountdown = rateOfFire;
         _shooterController.Shoot(projectile, spawnBulletPosition.position);

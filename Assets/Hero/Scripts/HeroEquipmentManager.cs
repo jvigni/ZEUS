@@ -22,9 +22,9 @@ public class HeroEquipmentManager : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Mouse0))
             Equiped.LClickUp();
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse1))
             Equiped.RClickIsPressed();
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if (Input.GetKeyUp(KeyCode.Mouse1))
             Equiped.RClickUp();
     }
 
