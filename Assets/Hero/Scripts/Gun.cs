@@ -29,7 +29,8 @@ public class Gun : Weapon
     {
         base.LClickIsPressed();
         _shooterController.Aim();
-        Shoot();
+        if (_shooterController.IsReadyToShoot)
+            Shoot();
     }
 
     public override void LClickUp()
@@ -52,7 +53,6 @@ public class Gun : Weapon
 
     void Shoot()
     {
-        if (!_shooterController.IsReadyToShoot) return;
         if (rateOfFireCountdown > 0) return;
 
         rateOfFireCountdown = rateOfFire;
