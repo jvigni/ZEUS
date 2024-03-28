@@ -5,6 +5,8 @@ using StarterAssets;
 
 public class Gun : Weapon
 {
+    [SerializeField] BulletProjectile projectile;
+    [SerializeField] Transform spawnBulletPosition;
     Animator _animator;
 
     void Awake()
@@ -15,7 +17,8 @@ public class Gun : Weapon
     public override void LClickDown()
     {
         base.LClickDown();
-        Debug.Log("PEW PEW"); // TODO
+        Debug.Log("PEW PEW");
+        Instantiate(projectile, spawnBulletPosition);
     }
 
     public override void OnEquip()
