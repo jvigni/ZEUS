@@ -8,17 +8,19 @@ public class Gun : Weapon
     [SerializeField] BulletProjectile projectile;
     [SerializeField] Transform spawnBulletPosition;
     Animator _animator;
+    ThirdPersonShooterController _shooterController;
 
     void Awake()
     {
         _animator = Wielder.GetComponent<Animator>();
+        _shooterController = Wielder.GetComponent<ThirdPersonShooterController>();
     }
 
     public override void LClickDown()
     {
         base.LClickDown();
         Debug.Log("PEW PEW");
-        Instantiate(projectile, spawnBulletPosition);
+        _shooterController.Shoot(projectile, spawnBulletPosition.position);
     }
 
     public override void OnEquip()

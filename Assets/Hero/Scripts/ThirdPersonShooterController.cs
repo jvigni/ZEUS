@@ -28,6 +28,12 @@ public class ThirdPersonShooterController : MonoBehaviour
         HandleAim(isAiming);
     }
 
+    public void Shoot(BulletProjectile projectile, Vector3 spawnPos)
+    {
+        var aimDir = (CalculateWorldAimPosition() - spawnPos).normalized;
+        Instantiate(projectile, spawnPos, Quaternion.LookRotation(aimDir));
+    }
+
     void HandleAim(bool isAiming)
     {
         _aimCamera.SetActive(isAiming);
