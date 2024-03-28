@@ -5,8 +5,10 @@ using StarterAssets;
 
 public class Gun : Weapon
 {
+    [SerializeField] float rateOfFire = 100f;
     [SerializeField] BulletProjectile projectile;
     [SerializeField] Transform spawnBulletPosition;
+    float rateOfFireCountdown;
     Animator _animator;
     ThirdPersonShooterController _shooterController;
 
@@ -16,10 +18,30 @@ public class Gun : Weapon
         _shooterController = Wielder.GetComponent<ThirdPersonShooterController>();
     }
 
+    void Update()
+    {
+        if (rateOfFireCountdown > 0)
+            rateOfFireCountdown--;
+    }
+
     public override void LClickDown()
     {
         base.LClickDown();
-        Debug.Log("PEW PEW");
+        Shoot();
+    }
+
+    public override void LClickPressed()
+    {
+        base.LClickPressed();
+        Shoot();
+    }
+
+    void Shoot()
+    {
+        if (rateOfFireCountdown > 0)
+            return;
+
+        rateOfFireCountdown = rateOfFire;
         _shooterController.Shoot(projectile, spawnBulletPosition.position);
     }
 
