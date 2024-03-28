@@ -64,6 +64,11 @@ public class ThirdPersonShooterController : MonoBehaviour
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
         }
+        else
+        {
+            debugTransform.position = ray.direction * 999f;
+            mouseWorldPosition = ray.direction * 999f;
+        }
         return mouseWorldPosition;
     }
 }

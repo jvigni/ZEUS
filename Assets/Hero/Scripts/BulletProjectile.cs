@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class BulletProjectile : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] int damage;
     [SerializeField] ParticleSystem hitExplosion;
+    [SerializeField] int secondsToSelfDestroy = 2;
+    int selfDestroyCounter;
+
     Rigidbody _bulletRigidbody;
     public GameObject _owner;
 
@@ -23,6 +28,14 @@ public class BulletProjectile : MonoBehaviour
     public void OnShooted(GameObject owner)
     {
         _owner = owner;
+        InvokeRepeating("SelfDestroyCheck", 0, 1);
+    }
+
+    void SelfDestroyCheck()
+    {
+        selfDestroyCounter++;
+        if (selfDestroyCounter > secondsToSelfDestroy)
+            Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)
