@@ -25,7 +25,7 @@ public class Gun : Weapon
             rateOfFireCountdown--;
     }
 
-    public async override void LClickIsPressed()
+    public override void LClickIsPressed()
     {
         base.LClickIsPressed();
         _shooterController.Aim();
@@ -67,6 +67,7 @@ public class Gun : Weapon
 
     public override void OnUnequip()
     {
+        _shooterController.StopAiming();
         _animator.SetBool("RifleOn", false);
         Wielder.GetComponent<ThirdPersonShooterController>().enabled = false;
     }

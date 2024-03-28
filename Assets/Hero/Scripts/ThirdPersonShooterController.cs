@@ -38,7 +38,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void Shoot(BulletProjectile projectile, Vector3 spawnPos)
     {
-        Debug.Log("PEW PEW");
         var aimDir = (CalculateWorldAimPosition() - spawnPos).normalized;
         var instantiatedProjectile = Instantiate(projectile, spawnPos, Quaternion.LookRotation(aimDir));
         instantiatedProjectile.OnShooted(gameObject);
@@ -47,7 +46,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     public void StopAiming()
     {
         IsReadyToShoot = false;
-        //Debug.Log("STOP AIM");
         _aimCamera.SetActive(false);
         _thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
@@ -56,7 +54,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void Aim()
     {
-        //Debug.Log("AIM");
         _aimCamera.SetActive(true);
         _thirdPersonController.RotateOnMove = false;
         _crosshairImg.gameObject.SetActive(true);
@@ -85,9 +82,8 @@ public class ThirdPersonShooterController : MonoBehaviour
         return mouseWorldPosition;
     }
 
-    public void Anim_ReadyToShoot() // TODO
+    public void Anim_ReadyToShoot()
     {
-        Debug.Log("READY TO SHOOT");
         IsReadyToShoot = true;
     }
 }
