@@ -20,7 +20,7 @@ public class Gun : Weapon
 
     void Awake()
     {
-        _animator = Wielder.GetComponent<Animator>();
+        _animator = Wielder.GetComponentInChildren<Animator>();
         _shooterController = Wielder.GetComponent<ThirdPersonShooterController>();
     }
 

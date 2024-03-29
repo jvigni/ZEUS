@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
-    [SerializeField] Transform debugTransform;
+    [SerializeField] Transform aimTargetTransform;
     [SerializeField] public GameObject _aimCamera;
     [SerializeField] public Image _crosshairImg;
     [SerializeField] private LayerMask _aimColliderLayerMask;
@@ -69,12 +69,12 @@ public class ThirdPersonShooterController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderLayerMask))
         {
-            debugTransform.position = raycastHit.point;
+            aimTargetTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
         }
         else
         {
-            debugTransform.position = ray.direction * 999f;
+            aimTargetTransform.position = ray.direction * 999f;
             mouseWorldPosition = ray.direction * 999f;
         }
         return mouseWorldPosition;

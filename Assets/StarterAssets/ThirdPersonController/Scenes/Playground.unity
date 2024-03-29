@@ -533,6 +533,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 088075743c31fd64b8a49ca4551e3f04, type: 3}
+--- !u!1 &265431244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 265431245}
+  - component: {fileID: 265431246}
+  - component: {fileID: 265431247}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &265431245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265431244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 818314079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &265431246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265431244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a00bfd9cbd1ef1408642d46407d71c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimTargetTransform: {fileID: 2112342080}
+  _aimCamera: {fileID: 1716468892}
+  _crosshairImg: {fileID: 537639331}
+  _aimColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!114 &265431247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265431244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9ee6c2b7dc4eb42a890e903af00fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipables:
+  - {fileID: 737207339}
+  Equiped: {fileID: 0}
 --- !u!4 &289652804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
@@ -1144,9 +1210,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -83.836
       objectReference: {fileID: 0}
+    - target: {fileID: 4060059154377340909, guid: 893d8b4e2ef6a1f41936a53d834ec492, type: 3}
+      propertyPath: Wielder
+      value: 
+      objectReference: {fileID: 818314078}
     - target: {fileID: 5581424046520393549, guid: 893d8b4e2ef6a1f41936a53d834ec492, type: 3}
       propertyPath: m_Name
       value: Boltgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5581424046520393549, guid: 893d8b4e2ef6a1f41936a53d834ec492, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1163,6 +1237,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3856616613948092469, guid: 893d8b4e2ef6a1f41936a53d834ec492, type: 3}
   m_PrefabInstance: {fileID: 658207323}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &737207339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4060059154377340909, guid: 893d8b4e2ef6a1f41936a53d834ec492, type: 3}
+  m_PrefabInstance: {fileID: 658207323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa7eb4fcebf0984685fd475a3819901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &741899118 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
@@ -1234,6 +1319,7 @@ Transform:
   m_Children:
   - {fileID: 2112342080}
   - {fileID: 4877908244699461}
+  - {fileID: 265431245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &874605735
@@ -2173,7 +2259,7 @@ GameObject:
   - component: {fileID: 1660332650}
   - component: {fileID: 1660332649}
   m_Layer: 0
-  m_Name: Rig 1
+  m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3210,7 +3296,7 @@ GameObject:
   - component: {fileID: 2112342078}
   - component: {fileID: 2112342077}
   m_Layer: 0
-  m_Name: AimTarget
+  m_Name: AimTargetSun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7306,7 +7392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a00bfd9cbd1ef1408642d46407d71c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugTransform: {fileID: 2109690251}
+  aimTargetTransform: {fileID: 0}
   _aimCamera: {fileID: 1716468892}
   _crosshairImg: {fileID: 537639331}
   _aimColliderLayerMask:
