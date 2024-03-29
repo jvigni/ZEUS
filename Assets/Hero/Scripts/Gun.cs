@@ -55,7 +55,7 @@ public class Gun : Weapon
     {
         if (rateOfFireCountdown > 0) return;
 
-        rateOfFireCountdown = rateOfFire;
+        rateOfFireCountdown = 1 / rateOfFire;
         _shooterController.Shoot(projectile, spawnBulletPosition.position);
     }
 
