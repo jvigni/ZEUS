@@ -35,7 +35,7 @@ public class Sword : Weapon
         _animator.SetTrigger("AttackR");
     }
 
-    async void LeftClickAttack() // TODO revisar. await no va?
+    void LeftClickAttack() // TODO revisar. await no va?
     {
         if (isAttacking) return;
 

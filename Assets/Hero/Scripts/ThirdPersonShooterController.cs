@@ -6,20 +6,14 @@ using UnityEngine.UI;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
-    [SerializeField] Transform aimTargetTransform;
+    [SerializeField] Transform aimPointTransform;
     [SerializeField] public GameObject _aimCamera;
     [SerializeField] public Image _crosshairImg;
     [SerializeField] private LayerMask _aimColliderLayerMask;
-    Animator _animator;
-    ThirdPersonController _thirdPersonController;
+    [SerializeField] Animator animator;
+    [SerializeField] ThirdPersonController thirdPersonController;
     //[SerializeField] public float normalSensitivity = 1f;
     //[SerializeField] public float aimSensitivity = .5f;
-
-    void Awake()
-    {
-        _thirdPersonController = GetComponentInChildren<ThirdPersonController>();
-        _animator = GetComponentInChildren<Animator>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -45,17 +39,17 @@ public class ThirdPersonShooterController : MonoBehaviour
     public void StopAiming()
     {
         _aimCamera.SetActive(false);
-        _thirdPersonController.RotateOnMove = true;
+        //_thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
-        _animator.SetBool("Aiming", false);
+        animator.SetBool("Aiming", false);
     }
 
     public void Aim()
     {
         _aimCamera.SetActive(true);
-        _thirdPersonController.RotateOnMove = false;
+        //_thirdPersonController.RotateOnMove = false;
         _crosshairImg.gameObject.SetActive(true);
-        _animator.SetBool("Aiming", true);
+        animator.SetBool("Aiming", true);
         Vector3 worldAimTarget = CalculateWorldAimPosition();
         worldAimTarget.y = transform.position.y;
         Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
@@ -69,12 +63,12 @@ public class ThirdPersonShooterController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderLayerMask))
         {
-            aimTargetTransform.position = raycastHit.point;
+            aimPointTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
         }
         else
         {
-            aimTargetTransform.position = ray.direction * 999f;
+            aimPointTransform.position = ray.direction * 999f;
             mouseWorldPosition = ray.direction * 999f;
         }
         return mouseWorldPosition;

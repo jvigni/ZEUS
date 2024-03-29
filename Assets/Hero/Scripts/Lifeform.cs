@@ -7,7 +7,6 @@ using UnityEngine.PlayerLoop;
 
 public class Lifeform : MonoBehaviour
 {
-    [SerializeField] Renderer renderer;
     [SerializeField] int maxHp = 100;
     public event Action OnDeath;
     public event Action<int> OnHealthLost;

@@ -10,9 +10,6 @@ using UnityEngine.InputSystem;
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM 
-    [RequireComponent(typeof(PlayerInput))]
-#endif
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
@@ -104,9 +101,9 @@ namespace StarterAssets
         private int _animIDMotionSpeed;
 
 #if ENABLE_INPUT_SYSTEM 
-        private PlayerInput _playerInput;
+        [SerializeField] PlayerInput _playerInput;
 #endif
-        private Animator _animator;
+        [SerializeField] Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
@@ -315,7 +312,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                if (Input.GetKeyDown(KeyCode.Space) && _jumpTimeoutDelta <= 0.0f)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
