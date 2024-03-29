@@ -21,7 +21,7 @@ public class Gun : Weapon
     void Awake()
     {
         _animator = Wielder.GetComponentInChildren<Animator>();
-        _shooterController = Wielder.GetComponent<ThirdPersonShooterController>();
+        _shooterController = Wielder.GetComponentInChildren<ThirdPersonShooterController>();
     }
 
     public override void LClickIsPressed()
@@ -90,13 +90,13 @@ public class Gun : Weapon
     public override void OnEquip()
     {
         _animator.SetBool("RifleOn", true);
-        Wielder.GetComponent<ThirdPersonShooterController>().enabled = true;
+        Wielder.GetComponentInChildren<ThirdPersonShooterController>().enabled = true;
     }
 
     public override void OnUnequip()
     {
         _shooterController.StopAiming();
         _animator.SetBool("RifleOn", false);
-        Wielder.GetComponent<ThirdPersonShooterController>().enabled = false;
+        Wielder.GetComponentInChildren<ThirdPersonShooterController>().enabled = false;
     }
 }

@@ -17,8 +17,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     void Awake()
     {
-        _thirdPersonController = GetComponent<ThirdPersonController>();
-        _animator = GetComponent<Animator>();
+        _thirdPersonController = GetComponentInChildren<ThirdPersonController>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
