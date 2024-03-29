@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 7267388411268868878}
   - component: {fileID: 4060059154377340909}
   m_Layer: 3
-  m_Name: SM_Wep_Rifle_01
+  m_Name: Boltgun
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
