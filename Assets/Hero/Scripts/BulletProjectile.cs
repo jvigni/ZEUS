@@ -20,9 +20,9 @@ public class BulletProjectile : MonoBehaviour
         _bulletRigidbody = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    void Update()
     {
-        _bulletRigidbody.velocity = transform.forward * speed;
+        transform.Translate(transform.forward * speed);
     }
 
     public void OnShooted(GameObject owner)

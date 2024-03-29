@@ -3,13 +3,17 @@ using Cinemachine;
 using UnityEngine.PlayerLoop;
 using StarterAssets;
 using System.Threading.Tasks;
+using System.Collections;
 
 public class Gun : Weapon
 {
-    [SerializeField] float rateOfFire = 100f;
+    [SerializeField] float secondsBetweenBullets;
+    [SerializeField] int bulletsPerMagazine;
+    [SerializeField] float secondsToReload;
     [SerializeField] BulletProjectile projectile;
     [SerializeField] Transform spawnBulletPosition;
-    float rateOfFireCountdown;
+    bool isBulletInChamber;
+    int actualBulletsInMagazine;
     Animator _animator;
     ThirdPersonShooterController _shooterController;
 
@@ -17,12 +21,6 @@ public class Gun : Weapon
     {
         _animator = Wielder.GetComponent<Animator>();
         _shooterController = Wielder.GetComponent<ThirdPersonShooterController>();
-    }
-
-    void Update()
-    {
-        if (rateOfFireCountdown > 0)
-            rateOfFireCountdown--;
     }
 
     public override void LClickIsPressed()
@@ -53,10 +51,31 @@ public class Gun : Weapon
 
     void Shoot()
     {
-        if (rateOfFireCountdown > 0) return;
+        if (isBulletInChamber)
+        {
+            _shooterController.Shoot(projectile, spawnBulletPosition.position);
+            StartCoroutine(LoadNextBullet());
+        }
 
-        rateOfFireCountdown = 1 / rateOfFire;
-        _shooterController.Shoot(projectile, spawnBulletPosition.position);
+        if (!isBulletInChamber) return;
+        if (actualBulletsInMagazine < 1) return;
+
+        isBulletInChamber = false;
+    }
+
+    IEnumerator LoadNextBullet()
+    {
+        if (actualBulletsInMagazine > 0)
+        {
+            yield return new WaitForSeconds(secondsBetweenBullets);
+            actualBulletsInMagazine--;
+            isBulletInChamber = true;
+        }
+        else
+        { // Auto reload:
+            yield return new WaitForSeconds(secondsToReload);
+            actualBulletsInMagazine = bulletsPerMagazine;
+        }
     }
 
     public override void OnEquip()
