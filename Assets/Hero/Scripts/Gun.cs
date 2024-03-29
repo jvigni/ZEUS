@@ -12,8 +12,9 @@ public class Gun : Weapon
     [SerializeField] float secondsToReload;
     [SerializeField] BulletProjectile projectile;
     [SerializeField] Transform spawnBulletPosition;
-    bool isBulletInChamber;
-    int actualBulletsInMagazine;
+    public bool isBulletInChamber;
+    public int actualBulletsInMagazine;
+    public bool reloading;
     Animator _animator;
     ThirdPersonShooterController _shooterController;
 
@@ -26,9 +27,46 @@ public class Gun : Weapon
     public override void LClickIsPressed()
     {
         base.LClickIsPressed();
-        _shooterController.Aim();
-        //if (_shooterController.IsReadyToShoot) // Anim event deprecated (muy bugoso)
-        Shoot();
+        if (reloading) return;
+        if (isBulletInChamber)
+        {
+            Debug.Log("Shooting!");
+            isBulletInChamber = false;
+            _shooterController.Shoot(projectile, spawnBulletPosition.position);
+            //_animator.SetTrigger("Shoot");
+            StartCoroutine(LoadNextBullet());
+        }
+        else
+        {
+            StartCoroutine(ReloadMagazine());
+        }
+    }
+
+    IEnumerator LoadNextBullet()
+    {
+        reloading = true;
+        if (actualBulletsInMagazine > 0)
+        {
+            yield return new WaitForSeconds(secondsBetweenBullets);
+            actualBulletsInMagazine--;
+            isBulletInChamber = true;
+            reloading = false;
+        }
+        else // Auto reload
+        {
+            StartCoroutine(ReloadMagazine());
+        }
+    }
+
+    IEnumerator ReloadMagazine()
+    {
+        Debug.Log("Reloading magazine..");
+        reloading = true;
+        //_animator.SetTrigger("Reload");
+        yield return new WaitForSeconds(secondsToReload);
+        actualBulletsInMagazine = bulletsPerMagazine;
+        isBulletInChamber = true;
+        reloading = false;
     }
 
     public override void LClickUp()
@@ -47,35 +85,6 @@ public class Gun : Weapon
     {
         base.RClickUp();
         _shooterController.StopAiming();
-    }
-
-    void Shoot()
-    {
-        if (isBulletInChamber)
-        {
-            _shooterController.Shoot(projectile, spawnBulletPosition.position);
-            StartCoroutine(LoadNextBullet());
-        }
-
-        if (!isBulletInChamber) return;
-        if (actualBulletsInMagazine < 1) return;
-
-        isBulletInChamber = false;
-    }
-
-    IEnumerator LoadNextBullet()
-    {
-        if (actualBulletsInMagazine > 0)
-        {
-            yield return new WaitForSeconds(secondsBetweenBullets);
-            actualBulletsInMagazine--;
-            isBulletInChamber = true;
-        }
-        else
-        { // Auto reload:
-            yield return new WaitForSeconds(secondsToReload);
-            actualBulletsInMagazine = bulletsPerMagazine;
-        }
     }
 
     public override void OnEquip()

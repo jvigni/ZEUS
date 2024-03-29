@@ -320,6 +320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wielder: {fileID: 0}
-  rateOfFire: 50
+  secondsBetweenBullets: 0.1
+  bulletsPerMagazine: 30
+  secondsToReload: 1
   projectile: {fileID: 1120902782092427637, guid: ad17d8f1ec9b4a74e9fb40b0a9a99416, type: 3}
   spawnBulletPosition: {fileID: 5953611161338400878}
