@@ -9,7 +9,7 @@ public class Gun : Weapon
 {
     [SerializeField] float secondsBetweenBullets;
     [SerializeField] int bulletsPerMagazine;
-    [SerializeField] float secondsToReload;
+    [SerializeField] float secondsToReload; // TODO Pasarlo a animacion
     [SerializeField] BulletProjectile projectile;
     [SerializeField] Transform spawnBulletPosition;
     bool isBulletInChamber;
@@ -22,6 +22,7 @@ public class Gun : Weapon
     {
         _animator = Wielder.GetComponentInChildren<Animator>();
         _shooterController = Wielder.GetComponentInChildren<ThirdPersonShooterController>();
+        actualBulletsInMagazine = bulletsPerMagazine;
     }
 
     public override void LClickIsPressed()
