@@ -12,7 +12,7 @@ public class Gun : Weapon
     [SerializeField] float secondsToReload; // TODO Pasarlo a animacion
     [SerializeField] BulletProjectile projectile;
     [SerializeField] Transform spawnBulletPosition;
-    bool isBulletInChamber;
+    bool isBulletInChamber = true;
     int actualBulletsInMagazine;
     bool reloading;
     Animator _animator;
