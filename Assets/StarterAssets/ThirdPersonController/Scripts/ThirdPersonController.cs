@@ -277,11 +277,15 @@ namespace StarterAssets
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                     RotationSmoothTime);
 
-                // rotate to face input direction relative to camera position
-                
-                if (AllwaysFaceAimPoint)
-                    transform.LookAt(AimPointTransform);
-                else
+                if (AllwaysFaceAimPoint) // rotate to face aimPoint, only rotating on Y axis (Horizontal)
+                {
+                    Vector3 targetPostition 
+                        = new Vector3(AimPointTransform.position.x,
+                                       transform.position.y,
+                                       AimPointTransform.position.z);
+                    transform.LookAt(targetPostition);
+                }
+                else // rotate to face input direction relative to camera position:
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
                 /* OLD: if (CharacterRotationFollowsCamera)
