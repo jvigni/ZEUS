@@ -10,11 +10,12 @@ public class BulletProjectile : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] ParticleSystem hitExplosion;
     [SerializeField] int secondsToSelfDestroy = 2;
+    [SerializeField] int maxDistance = 999;
     int _selfDestroyCounter;
-    Vector3 _dir;
 
     Rigidbody _bulletRigidbody;
     public GameObject _owner;
+    int _distanceCovered;
 
     void Awake()
     {
@@ -23,21 +24,16 @@ public class BulletProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(_dir * speed);
+        transform.Translate(Vector3.forward * speed);
+
+        _distanceCovered++;
+        if (_distanceCovered > maxDistance)
+            Destroy(gameObject);
     }
 
-    public void OnShooted(GameObject owner, Vector3 dir)
+    public void OnShooted(GameObject owner)
     {
         _owner = owner;
-        _dir = dir;
-        InvokeRepeating("SelfDestroyCheck", 0, 1);
-    }
-
-    void SelfDestroyCheck() // TODO se puede mejorar. demora mas de lo que dice
-    {
-        _selfDestroyCounter++;
-        if (_selfDestroyCounter > secondsToSelfDestroy)
-            Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)

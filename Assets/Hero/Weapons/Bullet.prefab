@@ -47,11 +47,11 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
@@ -71,6 +71,7 @@ MonoBehaviour:
   damage: 10
   hitExplosion: {fileID: 8651370029219405008, guid: fad9b1c360ed931469de00abf4b21975, type: 3}
   secondsToSelfDestroy: 2
+  maxDistance: 999
   _owner: {fileID: 0}
 --- !u!1 &5368096608817120402
 GameObject:

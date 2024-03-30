@@ -2505,11 +2505,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 741899121}
   m_SourcePrefab: {fileID: 100100000, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
---- !u!20 &1406918432 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
-  m_PrefabInstance: {fileID: 1221041499}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1411917573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4053556948231777926, guid: 0daa68bcd02f03e4f9741f798a56cb45, type: 3}
@@ -2904,7 +2899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.842013
+      value: -4.342013
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2952,7 +2947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2969,6 +2964,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
   m_PrefabInstance: {fileID: 1716468891}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1716468896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+  m_PrefabInstance: {fileID: 1716468891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716468892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1731770106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8319997366635773940, guid: 0ec254879cc260e4da26c32b71c4560e, type: 3}
@@ -10056,7 +10062,7 @@ MonoBehaviour:
   secondsBetweenBullets: 0
   bulletsPerMagazine: 0
   secondsToReload: 0
-  projectile: {fileID: 0}
+  projectilePrefab: {fileID: 0}
   spawnBulletPosition: {fileID: 0}
 --- !u!4 &2906161574224828173 stripped
 Transform:
@@ -10462,7 +10468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a00bfd9cbd1ef1408642d46407d71c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aimCamera: {fileID: 1406918432}
+  _aimCamera: {fileID: 1716468896}
   _crosshairImg: {fileID: 537639331}
   _animator: {fileID: 58116047725196838}
   _thirdPersonController: {fileID: 1938851254491843042}
