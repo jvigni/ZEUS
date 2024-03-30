@@ -4,6 +4,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] public Image _crosshairImg;
     [SerializeField] Animator _animator;
     [SerializeField] ThirdPersonController _thirdPersonController;
+    private bool _alreadyAiming;
+
     //[SerializeField] public float normalSensitivity = 1f;
     //[SerializeField] public float aimSensitivity = .5f;
 
@@ -23,6 +26,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void StopAiming()
     {
+        _alreadyAiming = false;
         _aimCamera.gameObject.SetActive(false);
         //_thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
@@ -32,6 +36,12 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void Aim()
     {
+        if (!_alreadyAiming)
+        {
+            _thirdPersonController.RotateTowards(_thirdPersonController.AimPointTransform.position);
+            _alreadyAiming = true;
+        }
+
         _thirdPersonController.SetCombatCamera(true);
         _aimCamera.gameObject.SetActive(true);
         _crosshairImg.gameObject.SetActive(true);

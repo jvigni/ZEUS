@@ -19,10 +19,10 @@ namespace StarterAssets
 
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        public float MoveSpeed = 3f;
 
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        public float SprintSpeed = 5f;
 
         //public bool CharacterRotationFollowsCamera;
         public bool RotateOnMove = true;
@@ -278,13 +278,7 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 if (_allwaysFaceAimPoint) // rotate to face aimPoint, only rotating on Y axis (Horizontal)
-                {
-                    Vector3 targetPostition 
-                        = new Vector3(AimPointTransform.position.x,
-                                       transform.position.y,
-                                       AimPointTransform.position.z);
-                    transform.LookAt(targetPostition);
-                }
+                    RotateTowards(AimPointTransform.position);
                 else // rotate to face input direction relative to camera position:
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
@@ -308,6 +302,16 @@ namespace StarterAssets
                 _animator.SetFloat("hMotion", Input.GetAxis("Horizontal") * _speed);
                 _animator.SetFloat("vMotion", Input.GetAxis("Vertical") * _speed);
             }
+        }
+
+        public void RotateTowards(Vector3 position)
+        {
+            Vector3 targetPostition = new Vector3(
+                AimPointTransform.position.x, 
+                position.y,
+                AimPointTransform.position.z);
+            
+            transform.LookAt(targetPostition);
         }
 
         private void JumpAndGravity()

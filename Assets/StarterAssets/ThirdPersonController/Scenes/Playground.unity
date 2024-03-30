@@ -584,10 +584,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a00bfd9cbd1ef1408642d46407d71c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aimCamera: {fileID: 1716468892}
+  _aimCamera: {fileID: 1716468896}
   _crosshairImg: {fileID: 537639331}
   _animator: {fileID: 0}
   _thirdPersonController: {fileID: 0}
+  _inputs: {fileID: 0}
 --- !u!114 &265431247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,11 +2955,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
---- !u!1 &1716468892 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
-  m_PrefabInstance: {fileID: 1716468891}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1716468895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
@@ -2969,7 +2965,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
   m_PrefabInstance: {fileID: 1716468891}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716468892}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
@@ -10472,6 +10468,7 @@ MonoBehaviour:
   _crosshairImg: {fileID: 537639331}
   _animator: {fileID: 58116047725196838}
   _thirdPersonController: {fileID: 1938851254491843042}
+  _inputs: {fileID: 4978736413015092501}
 --- !u!114 &8206886942663569717
 MonoBehaviour:
   m_ObjectHideFlags: 0
