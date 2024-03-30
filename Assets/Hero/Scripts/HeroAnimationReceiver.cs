@@ -16,4 +16,14 @@ public class AnimationReceiver : MonoBehaviour
         var equiped = GetComponentInParent<HeroEquipmentManager>().Equiped;
         equiped.OnAnimationEnd();
     }
+
+    void FootR()
+    {
+
+    }
+
+    void FootL()
+    {
+
+    }
 }
