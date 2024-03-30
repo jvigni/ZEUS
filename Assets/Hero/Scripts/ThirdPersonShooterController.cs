@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
-    [SerializeField] Transform aimPointTransform;
     [SerializeField] public GameObject _aimCamera;
     [SerializeField] public Image _crosshairImg;
-    [SerializeField] private LayerMask _aimColliderLayerMask;
     [SerializeField] Animator animator;
     [SerializeField] ThirdPersonController thirdPersonController;
     //[SerializeField] public float normalSensitivity = 1f;
@@ -18,10 +16,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aimPointTransform.position = CalculateWorldAimPosition();
-
-
-
 
         /*
         _isAiming = Input.GetKey(KeyCode.Mouse1);
@@ -36,8 +30,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void Shoot(BulletProjectile projectile, Vector3 spawnPos)
     {
-        Vector3 aimDir = (aimPointTransform.position - spawnPos).normalized;
-        //var aimDir = (CalculateWorldAimPosition() - spawnPos).normalized;
+        Vector3 worldAimTarget = thirdPersonController.AimPointTransform.position;
+        Vector3 aimDir = (worldAimTarget - spawnPos).normalized;
         var instantiatedProjectile = Instantiate(projectile, spawnPos, Quaternion.LookRotation(aimDir));
         instantiatedProjectile.OnShooted(gameObject);
     }
@@ -48,35 +42,21 @@ public class ThirdPersonShooterController : MonoBehaviour
         //_thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
         animator.SetBool("Aiming", false);
+        thirdPersonController.BlockBackwardsRotation(false);
     }
 
     public void Aim()
     {
+        thirdPersonController.BlockBackwardsRotation(true);
         _aimCamera.SetActive(true);
-        //_thirdPersonController.RotateOnMove = false;
-        //_crosshairImg.gameObject.SetActive(true);
+        _crosshairImg.gameObject.SetActive(true);
         animator.SetBool("Aiming", true);
-        Vector3 worldAimTarget = CalculateWorldAimPosition();
+        /*
+        Vector3 worldAimTarget = thirdPersonController.AimPointTransform.position;
         //worldAimTarget.y = transform.position.y;
         Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
         transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+        */
     }
 
-    Vector3 CalculateWorldAimPosition()
-    {
-        var mouseWorldPosition = Vector3.zero;
-        var screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderLayerMask))
-        {
-            aimPointTransform.position = raycastHit.point;
-            mouseWorldPosition = raycastHit.point;
-        }
-        else
-        {
-            aimPointTransform.position = ray.direction * 999f;
-            mouseWorldPosition = ray.direction * 999f;
-        }
-        return mouseWorldPosition;
-    }
 }

@@ -12,6 +12,11 @@ namespace StarterAssets
     [RequireComponent(typeof(CharacterController))]
     public class ThirdPersonController : MonoBehaviour
     {
+        [Header("Aim")]
+        [SerializeField] private LayerMask _aimColliderLayerMask;
+        [SerializeField] public Transform AimPointTransform;
+        [SerializeField] public bool BackwardsRotationBlocked;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -162,6 +167,8 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            
+            AimPointTransform.position = CalculateWorldAimPosition();
         }
 
         private void LateUpdate()
@@ -198,17 +205,21 @@ namespace StarterAssets
                     _animator.SetTrigger("Landing");
             }
         }
-
+        
+        //BackwardsRotationBlocked
         private void CameraRotation()
         {
             // if there is an input and camera position is not fixed
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
-                //Don't multiply mouse input by Time.deltaTime;
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+                if (!BackwardsRotationBlocked || _input.look.y >= 0)
+                {
+                    //Don't multiply mouse input by Time.deltaTime;
+                    float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                    _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
+                    _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                }
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -269,8 +280,8 @@ namespace StarterAssets
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                     RotationSmoothTime);
 
-                // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                    // rotate to face input direction relative to camera position
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
                 //if (CharacterRotationFollowsCamera)
                 //    transform.rotation = _mainCamera.transform.rotation;
@@ -399,6 +410,29 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        Vector3 CalculateWorldAimPosition()
+        {
+            var mouseWorldPosition = Vector3.zero;
+            var screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderLayerMask))
+            {
+                AimPointTransform.position = raycastHit.point;
+                mouseWorldPosition = raycastHit.point;
+            }
+            else
+            {
+                AimPointTransform.position = ray.direction * 999f;
+                mouseWorldPosition = ray.direction * 999f;
+            }
+            return mouseWorldPosition;
+        }
+
+        public void BlockBackwardsRotation(bool blockRotation)
+        {
+            BackwardsRotationBlocked = blockRotation;
         }
     }
 }
