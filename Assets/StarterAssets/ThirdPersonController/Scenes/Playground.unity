@@ -10113,7 +10113,7 @@ Transform:
   m_GameObject: {fileID: 712046229548222337}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5254383, y: 0.50647503, z: -0.25132895, w: 0.635792}
-  m_LocalPosition: {x: -0.17708574, y: 0.0189999, z: -0.020752564}
+  m_LocalPosition: {x: 0.072, y: 0.02, z: 0.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10482,7 +10482,7 @@ MonoBehaviour:
   - {fileID: 674816712542571048}
   - {fileID: 1161311381}
   - {fileID: 2240905448957446692}
-  Equiped: {fileID: 674816712542571048}
+  Equiped: {fileID: 0}
 --- !u!114 &8206886942663569716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10861,7 +10861,7 @@ PrefabInstance:
       objectReference: {fileID: 4267640400951855647}
     - target: {fileID: 5581424046520393549, guid: 893d8b4e2ef6a1f41936a53d834ec492, type: 3}
       propertyPath: m_Name
-      value: SM_Wep_Rifle_01
+      value: Boltgun
       objectReference: {fileID: 0}
     - target: {fileID: 5581424046520393549, guid: 893d8b4e2ef6a1f41936a53d834ec492, type: 3}
       propertyPath: m_IsActive
