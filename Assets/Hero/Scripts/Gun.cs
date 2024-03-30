@@ -10,7 +10,7 @@ public class Gun : Weapon
     [SerializeField] float secondsBetweenBullets;
     [SerializeField] int bulletsPerMagazine;
     [SerializeField] float secondsToReload; // TODO Pasarlo a animacion
-    [SerializeField] BulletProjectile projectile;
+    [SerializeField] BulletProjectile projectilePrefab;
     [SerializeField] Transform spawnBulletPosition;
     bool isBulletInChamber = true;
     int actualBulletsInMagazine;
@@ -33,7 +33,7 @@ public class Gun : Weapon
         {
             Debug.Log("Shooting!");
             isBulletInChamber = false;
-            _shooterController.Shoot(projectile, spawnBulletPosition.position);
+            _shooterController.Shoot(projectilePrefab, spawnBulletPosition);  
             //_animator.SetTrigger("Shoot");
             StartCoroutine(LoadNextBullet());
         }
@@ -91,6 +91,7 @@ public class Gun : Weapon
     public override void OnEquip()
     {
         _animator.SetBool("RifleOn", true);
+        _animator.SetTrigger("RifleDraw");
         Wielder.GetComponentInChildren<ThirdPersonShooterController>().enabled = true;
     }
 

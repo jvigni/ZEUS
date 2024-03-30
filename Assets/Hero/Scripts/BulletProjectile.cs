@@ -10,7 +10,8 @@ public class BulletProjectile : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] ParticleSystem hitExplosion;
     [SerializeField] int secondsToSelfDestroy = 2;
-    int selfDestroyCounter;
+    int _selfDestroyCounter;
+    Vector3 _dir;
 
     Rigidbody _bulletRigidbody;
     public GameObject _owner;
@@ -22,19 +23,20 @@ public class BulletProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(transform.forward * speed);
+        transform.Translate(_dir * speed);
     }
 
-    public void OnShooted(GameObject owner)
+    public void OnShooted(GameObject owner, Vector3 dir)
     {
         _owner = owner;
+        _dir = dir;
         InvokeRepeating("SelfDestroyCheck", 0, 1);
     }
 
     void SelfDestroyCheck() // TODO se puede mejorar. demora mas de lo que dice
     {
-        selfDestroyCounter++;
-        if (selfDestroyCounter > secondsToSelfDestroy)
+        _selfDestroyCounter++;
+        if (_selfDestroyCounter > secondsToSelfDestroy)
             Destroy(gameObject);
     }
 

@@ -111,7 +111,7 @@ namespace StarterAssets
         [SerializeField] Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        private Camera _mainCamera;
 
         private const float _threshold = 0.01f;
 
@@ -136,7 +136,7 @@ namespace StarterAssets
             // get a reference to our main camera
             if (_mainCamera == null)
             {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             }
         }
 
@@ -167,7 +167,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-            
+
             AimPointTransform.position = CalculateWorldAimPosition();
         }
 
@@ -424,7 +424,7 @@ namespace StarterAssets
         {
             var mouseWorldPosition = Vector3.zero;
             var screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-            Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
+            Ray ray = _mainCamera.ScreenPointToRay(screenCenterPoint); //Input.mousePosition
             if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderLayerMask))
             {
                 AimPointTransform.position = raycastHit.point;
