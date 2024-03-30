@@ -18,6 +18,11 @@ public class ThirdPersonShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        aimPointTransform.position = CalculateWorldAimPosition();
+
+
+
+
         /*
         _isAiming = Input.GetKey(KeyCode.Mouse1);
         if (_isAiming)
@@ -31,7 +36,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void Shoot(BulletProjectile projectile, Vector3 spawnPos)
     {
-        var aimDir = (CalculateWorldAimPosition() - spawnPos).normalized;
+        Vector3 aimDir = (aimPointTransform.position - spawnPos).normalized;
+        //var aimDir = (CalculateWorldAimPosition() - spawnPos).normalized;
         var instantiatedProjectile = Instantiate(projectile, spawnPos, Quaternion.LookRotation(aimDir));
         instantiatedProjectile.OnShooted(gameObject);
     }
@@ -48,10 +54,10 @@ public class ThirdPersonShooterController : MonoBehaviour
     {
         _aimCamera.SetActive(true);
         //_thirdPersonController.RotateOnMove = false;
-        _crosshairImg.gameObject.SetActive(true);
+        //_crosshairImg.gameObject.SetActive(true);
         animator.SetBool("Aiming", true);
         Vector3 worldAimTarget = CalculateWorldAimPosition();
-        worldAimTarget.y = transform.position.y;
+        //worldAimTarget.y = transform.position.y;
         Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
         transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
     }
