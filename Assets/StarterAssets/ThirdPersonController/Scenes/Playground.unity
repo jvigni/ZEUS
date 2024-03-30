@@ -9814,8 +9814,8 @@ MonoBehaviour:
   _aimColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  MoveSpeed: 2
-  SprintSpeed: 5.335
+  MoveSpeed: 3
+  SprintSpeed: 5
   RotateOnMove: 1
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
