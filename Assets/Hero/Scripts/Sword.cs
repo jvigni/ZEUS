@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 public class Sword : Weapon
@@ -5,10 +6,12 @@ public class Sword : Weapon
     [SerializeField] private bool isAttacking;
     [SerializeField] private int attack_combo_state = 0;
     [SerializeField] private int comboCountdown;
+    ThirdPersonController _thirdPersonController;
     Animator _animator;
 
-    void Start()
+    void Awake()
     {
+        _thirdPersonController = Wielder.GetComponent<ThirdPersonController>();
         _animator = Wielder.GetComponent<Animator>();
     }
 
@@ -79,5 +82,17 @@ public class Sword : Weapon
     public override bool CanUnequip()
     {
         return !isAttacking;
+    }
+
+    public override void OnEquip()
+    {
+        base.OnEquip();
+        _thirdPersonController.SetCombatCamera(true);
+    }
+
+    public override void OnUnequip()
+    {
+        base.OnUnequip();
+        _thirdPersonController.SetCombatCamera(false);
     }
 }

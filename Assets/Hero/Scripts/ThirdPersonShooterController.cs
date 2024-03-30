@@ -8,8 +8,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 {
     [SerializeField] public GameObject _aimCamera;
     [SerializeField] public Image _crosshairImg;
-    [SerializeField] Animator animator;
-    [SerializeField] ThirdPersonController thirdPersonController;
+    [SerializeField] Animator _animator;
+    [SerializeField] ThirdPersonController _thirdPersonController;
     //[SerializeField] public float normalSensitivity = 1f;
     //[SerializeField] public float aimSensitivity = .5f;
 
@@ -30,7 +30,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void Shoot(BulletProjectile projectile, Vector3 spawnPos)
     {
-        Vector3 worldAimTarget = thirdPersonController.AimPointTransform.position;
+        Vector3 worldAimTarget = _thirdPersonController.AimPointTransform.position;
         Vector3 aimDir = (worldAimTarget - spawnPos).normalized;
         var instantiatedProjectile = Instantiate(projectile, spawnPos, Quaternion.LookRotation(aimDir));
         instantiatedProjectile.OnShooted(gameObject);
@@ -41,16 +41,16 @@ public class ThirdPersonShooterController : MonoBehaviour
         _aimCamera.SetActive(false);
         //_thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
-        animator.SetBool("Aiming", false);
-        thirdPersonController.AllwaysFaceAimPoint = false;
+        _animator.SetBool("Aiming", false);
+        _thirdPersonController.SetCombatCamera(false);
     }
 
     public void Aim()
     {
-        thirdPersonController.AllwaysFaceAimPoint = true;
+        _thirdPersonController.SetCombatCamera(true);
         _aimCamera.SetActive(true);
         _crosshairImg.gameObject.SetActive(true);
-        animator.SetBool("Aiming", true);
+        _animator.SetBool("Aiming", true);
         /*
         Vector3 worldAimTarget = thirdPersonController.AimPointTransform.position;
         //worldAimTarget.y = transform.position.y;

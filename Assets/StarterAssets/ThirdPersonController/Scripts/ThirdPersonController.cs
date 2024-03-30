@@ -13,7 +13,7 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Aim")]
-        public bool AllwaysFaceAimPoint;
+        bool _allwaysFaceAimPoint;
         [SerializeField] public Transform AimPointTransform;
         [SerializeField] private LayerMask _aimColliderLayerMask;
 
@@ -277,7 +277,7 @@ namespace StarterAssets
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                     RotationSmoothTime);
 
-                if (AllwaysFaceAimPoint) // rotate to face aimPoint, only rotating on Y axis (Horizontal)
+                if (_allwaysFaceAimPoint) // rotate to face aimPoint, only rotating on Y axis (Horizontal)
                 {
                     Vector3 targetPostition 
                         = new Vector3(AimPointTransform.position.x,
@@ -433,6 +433,12 @@ namespace StarterAssets
                 mouseWorldPosition = ray.direction * 999f;
             }
             return mouseWorldPosition;
+        }
+
+        public void SetCombatCamera(bool isOn)
+        {
+            _allwaysFaceAimPoint = isOn;
+            _animator.SetBool("Freelook", !isOn);
         }
     }
 }

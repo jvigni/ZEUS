@@ -49,7 +49,14 @@ public class HeroEquipmentManager : MonoBehaviour
     void Equip(Equipable newEquipable)
     {
         if (Equiped != null)
+        {
             Equiped.Unequip();
+            if (Equiped.Equals(newEquipable))
+            {
+                Equiped = null;
+                return;
+            }    
+        }
 
         Equiped = newEquipable;
         newEquipable.Equip(gameObject);
