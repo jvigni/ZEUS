@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7881516814562098412}
   - component: {fileID: 2326693089694466416}
   - component: {fileID: 1120902782092427637}
+  - component: {fileID: 971375978176469976}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -44,7 +45,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -71,8 +72,35 @@ MonoBehaviour:
   damage: 10
   hitExplosion: {fileID: 8651370029219405008, guid: fad9b1c360ed931469de00abf4b21975, type: 3}
   secondsToSelfDestroy: 2
-  maxDistance: 999
+  maxDistance: 100
   _owner: {fileID: 0}
+--- !u!54 &971375978176469976
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721385057521977}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5368096608817120402
 GameObject:
   m_ObjectHideFlags: 0

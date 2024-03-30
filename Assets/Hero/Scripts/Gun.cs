@@ -29,6 +29,7 @@ public class Gun : Weapon
     {
         base.LClickIsPressed();
         if (reloading) return;
+
         if (isBulletInChamber)
         {
             Debug.Log("Shooting!");

@@ -10,7 +10,7 @@ public class BulletProjectile : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] ParticleSystem hitExplosion;
     [SerializeField] int secondsToSelfDestroy = 2;
-    [SerializeField] int maxDistance = 999;
+    [SerializeField] int maxDistance = 500;
     int _selfDestroyCounter;
 
     Rigidbody _bulletRigidbody;
@@ -28,8 +28,12 @@ public class BulletProjectile : MonoBehaviour
 
         _distanceCovered++;
         if (_distanceCovered > maxDistance)
+        {
+            Instantiate(hitExplosion, transform.position, transform.rotation);
             Destroy(gameObject);
+        }
     }
+
 
     public void OnShooted(GameObject owner)
     {

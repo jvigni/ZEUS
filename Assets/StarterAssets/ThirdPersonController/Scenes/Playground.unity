@@ -588,7 +588,6 @@ MonoBehaviour:
   _crosshairImg: {fileID: 537639331}
   _animator: {fileID: 0}
   _thirdPersonController: {fileID: 0}
-  _inputs: {fileID: 0}
 --- !u!114 &265431247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,7 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e267abc53d55764496f83f750c5b0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helmet: {fileID: 0}
+  helmet: {fileID: 973294030}
 --- !u!4 &623915972
 Transform:
   m_ObjectHideFlags: 0
@@ -2158,6 +2157,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962038203}
   m_Mesh: {fileID: 4531743424059296305, guid: c46e4c0712c16cd42b9dc785ca682ae5, type: 3}
+--- !u!1 &973294030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2300072681672728094, guid: 169838def9b88154d92c0d272495e72f, type: 3}
+  m_PrefabInstance: {fileID: 1981177662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &981333081
 GameObject:
   m_ObjectHideFlags: 0
@@ -10468,7 +10472,6 @@ MonoBehaviour:
   _crosshairImg: {fileID: 537639331}
   _animator: {fileID: 58116047725196838}
   _thirdPersonController: {fileID: 1938851254491843042}
-  _inputs: {fileID: 4978736413015092501}
 --- !u!114 &8206886942663569717
 MonoBehaviour:
   m_ObjectHideFlags: 0
