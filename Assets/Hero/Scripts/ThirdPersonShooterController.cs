@@ -42,12 +42,12 @@ public class ThirdPersonShooterController : MonoBehaviour
         //_thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
         animator.SetBool("Aiming", false);
-        thirdPersonController.BlockBackwardsRotation(false);
+        thirdPersonController.AllwaysFaceAimPoint = false;
     }
 
     public void Aim()
     {
-        thirdPersonController.BlockBackwardsRotation(true);
+        thirdPersonController.AllwaysFaceAimPoint = true;
         _aimCamera.SetActive(true);
         _crosshairImg.gameObject.SetActive(true);
         animator.SetBool("Aiming", true);

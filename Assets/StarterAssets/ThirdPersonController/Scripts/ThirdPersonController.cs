@@ -13,9 +13,9 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Aim")]
-        [SerializeField] private LayerMask _aimColliderLayerMask;
+        public bool AllwaysFaceAimPoint;
         [SerializeField] public Transform AimPointTransform;
-        [SerializeField] public bool BackwardsRotationBlocked;
+        [SerializeField] private LayerMask _aimColliderLayerMask;
 
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -212,14 +212,11 @@ namespace StarterAssets
             // if there is an input and camera position is not fixed
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
-                if (!BackwardsRotationBlocked || _input.look.y >= 0)
-                {
-                    //Don't multiply mouse input by Time.deltaTime;
-                    float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+                //Don't multiply mouse input by Time.deltaTime;
+                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                    _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                    _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
-                }
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -267,7 +264,7 @@ namespace StarterAssets
 
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
-
+            
             // normalise input direction
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
@@ -280,11 +277,15 @@ namespace StarterAssets
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                     RotationSmoothTime);
 
-                    // rotate to face input direction relative to camera position
+                // rotate to face input direction relative to camera position
+                
+                if (AllwaysFaceAimPoint)
+                    transform.LookAt(AimPointTransform);
+                else
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
-                //if (CharacterRotationFollowsCamera)
-                //    transform.rotation = _mainCamera.transform.rotation;
+                /* OLD: if (CharacterRotationFollowsCamera)
+                transform.rotation = _mainCamera.transform.rotation;*/
             }
 
 
@@ -428,11 +429,6 @@ namespace StarterAssets
                 mouseWorldPosition = ray.direction * 999f;
             }
             return mouseWorldPosition;
-        }
-
-        public void BlockBackwardsRotation(bool blockRotation)
-        {
-            BackwardsRotationBlocked = blockRotation;
         }
     }
 }
