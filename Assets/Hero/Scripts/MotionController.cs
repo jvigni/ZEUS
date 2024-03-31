@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MotionController : MonoBehaviour
 {
-    [SerializeField] float _walkSpeed = 3f; // in m/s
-    [SerializeField] float _runSpeed = 5f; // in m/s
-    [SerializeField] float _maxJumpHeigth = 2.0f;
+    [SerializeField] float _walkSpeed = 3f;
+    [SerializeField] float _runSpeed = 5f;
+    [SerializeField] float _maxJumpHeigth = 2f;
     [SerializeField] float _maxJumpTime = .5f;
     [SerializeField] float gravity = -9.81f;
-    [SerializeField] float hInput, vInput;
     [SerializeField] CharacterController _characterController;
     [SerializeField] Animator _animator;
 
@@ -20,14 +16,23 @@ public class MotionController : MonoBehaviour
         var speed = Input.GetKey(KeyCode.LeftShift) ? _runSpeed : _walkSpeed;
         var velocity = CalculateVelocity(movementDirection, speed);
         
-        HandleMovement(movementDirection);
+        HandleMovement(velocity);
         HandleRotation(movementDirection);
-        HandleJump(velocity);
     }
 
     Vector3 CalculateVelocity(Vector3 movementDirection, float speed)
     {
         var velocity = movementDirection * speed * Time.deltaTime;
+
+        // Jump:
+        if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
+        {
+            float timeToApex = _maxJumpTime / 2;
+            gravity = (-2 * _maxJumpHeigth) / Mathf.Pow(timeToApex, 2);
+            var initialJumpVelocity = (2 * _maxJumpHeigth) / timeToApex;
+            velocity.y = initialJumpVelocity;
+            _animator.SetTrigger("Jump");
+        }
 
         // Gravity:
         if (!_characterController.isGrounded)
@@ -46,7 +51,11 @@ public class MotionController : MonoBehaviour
 
     void HandleRotation(Vector3 movementDirection)
     {
-        // TODO solo rotar en el eje Y
+        Vector3 targetPostition = transform.position + movementDirection * Time.deltaTime; // time delta time??
+        // Rotates only on Y axis:
+        targetPostition.x = 0;
+        targetPostition.z = 0;
+        transform.LookAt(targetPostition);
     }
 
     void HandleMovement(Vector3 velocity)
@@ -58,46 +67,34 @@ public class MotionController : MonoBehaviour
 
     Vector3 CalculateMovementDirection()
     {
-        hInput = Input.GetAxis("Horizontal");
-        vInput = Input.GetAxis("Vertical");
+        var hInput = Input.GetAxis("Horizontal");
+        var vInput = Input.GetAxis("Vertical");
 
         var xRedDir = transform.right * hInput;
         var yGreenDir = transform.up;
         var zBlueDir = transform.forward * vInput;
-        var dir = (xRedDir + zBlueDir + yGreenDir).normalized;
-        return dir;
+        var direction = (xRedDir + zBlueDir + yGreenDir).normalized;
+        return direction;
     }
 
-    void HandleJump(Vector3 velocity)
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
-        {
-            float timeToApex = _maxJumpTime / 2;
-            gravity = (-2 * _maxJumpHeigth) / Mathf.Pow(timeToApex, 2);
-            var initialJumpVelocity = (2 * _maxJumpHeigth) / timeToApex;
-            velocity.y = initialJumpVelocity;
-            _animator.SetTrigger("Jump");
-        }
-    }
-
-    void OnLand() // Called by animation
+    void OnLand() // Anim
     {
         // TODO ground SFX + particles
     }
 
-    void FootR() // Called by animation
+    void FootR() // Anim
     {
         OnFootstep();
     }
 
-    void FootL() // Called by animation
+    void FootL() // Anim
     {
         OnFootstep();
     }
 
-    void OnFootstep() // Called by animation
+    void OnFootstep() // Anim
     {
-        // TODO
+        // TODO:
         //var index = Random.Range(0, FootstepAudioClips.Length);
         //AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
     }
