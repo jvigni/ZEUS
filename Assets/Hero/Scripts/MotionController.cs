@@ -1,26 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MotionController : MonoBehaviour
 {
-    //[SerializeField] LayerMask groundMask;
-    [SerializeField] float _moveSpeed = 5;
+    [SerializeField] float _walkSpeed = 3f; // in m/s
+    [SerializeField] float _runSpeed = 5f; // in m/s
     [SerializeField] float _maxJumpHeigth = 2.0f;
     [SerializeField] float _maxJumpTime = .5f;
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float hInput, vInput;
-    [SerializeField] Vector3 _velocity;
     [SerializeField] CharacterController _characterController;
     [SerializeField] Animator _animator;
 
     void Update()
     {
         var movementDirection = CalculateMovementDirection();
+        var speed = Input.GetKey(KeyCode.LeftShift) ? _runSpeed : _walkSpeed;
+        var velocity = CalculateVelocity(movementDirection, speed);
+        
         HandleMovement(movementDirection);
         HandleRotation(movementDirection);
-        HandleGravity();
-        HandleJump();
+        HandleJump(velocity);
+    }
+
+    Vector3 CalculateVelocity(Vector3 movementDirection, float speed)
+    {
+        var velocity = movementDirection * speed * Time.deltaTime;
+
+        // Gravity:
+        if (!_characterController.isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+            _animator.SetTrigger("Airbourne");
+        }
+        else if (velocity.y < 0)
+        {
+            velocity.y = -2;
+            _animator.SetTrigger("Landing");
+        }
+
+        return velocity;
     }
 
     void HandleRotation(Vector3 movementDirection)
@@ -28,11 +49,11 @@ public class MotionController : MonoBehaviour
         // TODO solo rotar en el eje Y
     }
 
-    void HandleMovement(Vector3 movementDirection)
+    void HandleMovement(Vector3 velocity)
     {
-        _characterController.Move(movementDirection * _moveSpeed * Time.deltaTime);
-        _animator.SetFloat("hInput", hInput);
-        _animator.SetFloat("vInput", vInput);
+        _characterController.Move(velocity);
+        _animator.SetFloat("HorizontalVelocity", velocity.x);
+        _animator.SetFloat("VerticalVelocity", velocity.y);
     }
 
     Vector3 CalculateMovementDirection()
@@ -47,29 +68,14 @@ public class MotionController : MonoBehaviour
         return dir;
     }
 
-    void HandleGravity()
-    {
-        if (!_characterController.isGrounded)
-        {
-            _velocity.y += gravity * Time.deltaTime;
-            _animator.SetTrigger("Airbourne");
-        }
-        else if (_velocity.y < 0)
-        {
-            _velocity.y = -2;
-            _animator.SetTrigger("Landing");
-        }
-        _characterController.Move(_velocity * Time.deltaTime);
-    }
-
-    void HandleJump()
+    void HandleJump(Vector3 velocity)
     {
         if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
         {
             float timeToApex = _maxJumpTime / 2;
             gravity = (-2 * _maxJumpHeigth) / Mathf.Pow(timeToApex, 2);
             var initialJumpVelocity = (2 * _maxJumpHeigth) / timeToApex;
-            _velocity.y = initialJumpVelocity;
+            velocity.y = initialJumpVelocity;
             _animator.SetTrigger("Jump");
         }
     }
