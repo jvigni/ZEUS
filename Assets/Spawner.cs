@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] AlienAI monsterPrefab;
+    [SerializeField] GameObject monsterPrefab;
 
     private void Start()
     {
@@ -16,6 +16,6 @@ public class Spawner : MonoBehaviour
         var rad = 20;
         var spawnPos = new Vector3(Random.RandomRange(-rad, rad), 0, Random.RandomRange(-rad, rad));
         var instance = Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
-        instance.SetTarget(Provider.Hero.transform);
+        instance.GetComponent<AlienAI>().Init(Provider.Hero.transform);
     }
 }

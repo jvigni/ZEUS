@@ -10,11 +10,11 @@ public static class Provider
 public class App : MonoBehaviour
 {
     [SerializeField] GameObject helmet;
-    [SerializeField] GameObject hero;
+    [SerializeField] GameObject Hero;
 
-    private void Start()
+    private void Awake()
     {
-        Provider.Hero = hero;
+        Provider.Hero = Hero;
     }
 
     void Update()

@@ -10,12 +10,14 @@ public class AlienAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null) return;
+
         transform.position = Vector3.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
         //transform.rotation = Quaternion.FromToRotation(transform.position, target.position);
         transform.LookAt(target.position);
     }
 
-    public void SetTarget(Transform target)
+    public void Init(Transform target)
     {
         this.target = target;
     }

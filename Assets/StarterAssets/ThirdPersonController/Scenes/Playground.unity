@@ -1406,6 +1406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helmet: {fileID: 973294030}
+  hero: {fileID: 0}
 --- !u!4 &623915972
 Transform:
   m_ObjectHideFlags: 0
