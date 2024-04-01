@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public static class Provider
+{
+    public static GameObject Hero;
+}
+
 public class App : MonoBehaviour
 {
     [SerializeField] GameObject helmet;
+    [SerializeField] GameObject hero;
 
-    void Awake()
+    private void Start()
     {
-
+        Provider.Hero = hero;
     }
 
     void Update()
