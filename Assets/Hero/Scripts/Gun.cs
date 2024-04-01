@@ -92,6 +92,7 @@ public class Gun : Weapon
     public override void OnEquip()
     {
         base.OnEquip();
+        reloading = false;
         _animator.SetBool("RifleOn", true);
         _animator.SetTrigger("RifleDraw");
         Wielder.GetComponentInChildren<ThirdPersonShooterController>().enabled = true;
