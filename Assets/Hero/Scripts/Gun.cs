@@ -91,6 +91,7 @@ public class Gun : Weapon
 
     public override void OnEquip()
     {
+        base.OnEquip();
         _animator.SetBool("RifleOn", true);
         _animator.SetTrigger("RifleDraw");
         Wielder.GetComponentInChildren<ThirdPersonShooterController>().enabled = true;
@@ -98,6 +99,7 @@ public class Gun : Weapon
 
     public override void OnUnequip()
     {
+        base.OnUnequip();
         _shooterController.StopAiming();
         _animator.SetBool("RifleOn", false);
         Wielder.GetComponentInChildren<ThirdPersonShooterController>().enabled = false;

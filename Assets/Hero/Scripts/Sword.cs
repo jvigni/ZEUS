@@ -6,12 +6,10 @@ public class Sword : Weapon
     [SerializeField] private bool isAttacking;
     [SerializeField] private int attack_combo_state = 0;
     [SerializeField] private int comboCountdown;
-    ThirdPersonController _thirdPersonController;
     Animator _animator;
 
     void Awake()
     {
-        _thirdPersonController = Wielder.GetComponent<ThirdPersonController>();
         _animator = Wielder.GetComponent<Animator>();
     }
 
@@ -87,12 +85,14 @@ public class Sword : Weapon
     public override void OnEquip()
     {
         base.OnEquip();
-        _thirdPersonController.SetCombatCamera(true);
+        Wielder.GetComponent<ThirdPersonController>().SetCombatCamera(true);
+        _animator.SetTrigger("unsheatheSword");
     }
 
     public override void OnUnequip()
     {
         base.OnUnequip();
-        _thirdPersonController.SetCombatCamera(false);
+        Wielder.GetComponent<ThirdPersonController>().SetCombatCamera(false);
+        _animator.SetTrigger("sheathSword");
     }
 }
