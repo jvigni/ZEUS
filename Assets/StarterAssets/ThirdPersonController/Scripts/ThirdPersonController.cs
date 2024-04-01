@@ -278,7 +278,7 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 if (_allwaysFaceAimPoint) // rotate to face aimPoint, only rotating on Y axis (Horizontal)
-                    RotateTowards(AimPointTransform.position);
+                    RotateTowards(new Vector3(AimPointTransform.position.x, 0, 0));
                 else // rotate to face input direction relative to camera position:
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
