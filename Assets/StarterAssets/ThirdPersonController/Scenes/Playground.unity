@@ -894,7 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a176696329e9544b974d1a5d4cb6698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 8474173197822487316, guid: 0059feb8219a4c642b2e566dbae86a95, type: 3}
+  monsterPrefab: {fileID: 1370728184972205400, guid: 0059feb8219a4c642b2e566dbae86a95, type: 3}
 --- !u!1 &324590861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helmet: {fileID: 973294030}
-  hero: {fileID: 0}
+  Hero: {fileID: 4267640400951855647}
 --- !u!4 &623915972
 Transform:
   m_ObjectHideFlags: 0
@@ -10548,7 +10548,7 @@ PrefabInstance:
     - target: {fileID: 1370728184972205400, guid: 0059feb8219a4c642b2e566dbae86a95, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 2134157474803655927}
+      objectReference: {fileID: 0}
     - target: {fileID: 1499085191354714937, guid: 0059feb8219a4c642b2e566dbae86a95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.16

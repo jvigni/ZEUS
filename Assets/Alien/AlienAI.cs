@@ -17,8 +17,8 @@ public class AlienAI : MonoBehaviour
         transform.LookAt(target.position);
     }
 
-    public void Init(Transform target)
+    public void Init(Transform newTarget)
     {
-        this.target = target;
+        target = newTarget;
     }
 }
