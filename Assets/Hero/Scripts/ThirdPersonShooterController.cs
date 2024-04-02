@@ -31,10 +31,10 @@ public class ThirdPersonShooterController : MonoBehaviour
         //_thirdPersonController.RotateOnMove = true;
         _crosshairImg.gameObject.SetActive(false);
         _animator.SetBool("Aiming", false);
-        _thirdPersonController.SetCombatCamera(false);
+        //_thirdPersonController.SetCombatCamera(false);
     }
 
-    public void Aim()
+    public void Aim(bool withZoom)
     {
         if (!_alreadyAiming)
         {
@@ -42,8 +42,10 @@ public class ThirdPersonShooterController : MonoBehaviour
             _alreadyAiming = true;
         }
 
-        _thirdPersonController.SetCombatCamera(true);
-        _aimCamera.gameObject.SetActive(true);
+        //_thirdPersonController.SetCombatCamera(true);
+        if (withZoom)
+            _aimCamera.gameObject.SetActive(true);
+        
         _crosshairImg.gameObject.SetActive(true);
         _animator.SetBool("Aiming", true);
         /*

@@ -10,10 +10,12 @@ public abstract class Weapon : Equipable
     public override void OnEquip() 
     {
         //_thirdPersonController.SetCombatCamera(true);
+        Wielder.GetComponent<ThirdPersonController>().SetCombatCamera(true);
     }
 
     public override void OnUnequip()
     {
         //_thirdPersonController.SetCombatCamera(false);
+        Wielder.GetComponent<ThirdPersonController>().SetCombatCamera(false);
     }
 }

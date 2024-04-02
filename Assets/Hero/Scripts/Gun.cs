@@ -28,9 +28,10 @@ public class Gun : Weapon
     public override void LClickIsPressed()
     {
         base.LClickIsPressed();
-        if (reloading) return;
+        if (reloading) 
+            return;
 
-        _shooterController.Aim();
+        _shooterController.Aim(false);
 
         if (isBulletInChamber)
         {
@@ -82,7 +83,7 @@ public class Gun : Weapon
     public override void RClickIsPressed()
     {
         base.RClickIsPressed();
-        _shooterController.Aim();
+        _shooterController.Aim(true);
     }
 
     public override void RClickUp()
