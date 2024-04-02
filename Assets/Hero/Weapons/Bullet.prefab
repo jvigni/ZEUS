@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7881516814562098412}
-  - component: {fileID: 2326693089694466416}
   - component: {fileID: 1120902782092427637}
+  - component: {fileID: 2326693089694466416}
   - component: {fileID: 971375978176469976}
   m_Layer: 0
   m_Name: Bullet
@@ -35,6 +35,24 @@ Transform:
   - {fileID: 6777768702504684644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1120902782092427637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721385057521977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6068f9abae13f5a4f91b606e0c362d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  damage: 10
+  hitExplosion: {fileID: 8651370029219405008, guid: fad9b1c360ed931469de00abf4b21975, type: 3}
+  secondsToSelfDestroy: 2
+  maxDistance: 100
+  _owner: {fileID: 0}
 --- !u!65 &2326693089694466416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56,24 +74,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1120902782092427637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2721385057521977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6068f9abae13f5a4f91b606e0c362d5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
-  damage: 10
-  hitExplosion: {fileID: 8651370029219405008, guid: fad9b1c360ed931469de00abf4b21975, type: 3}
-  secondsToSelfDestroy: 2
-  maxDistance: 100
-  _owner: {fileID: 0}
 --- !u!54 &971375978176469976
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 6777768702504684644}
   - component: {fileID: 4231543574783285031}
   - component: {fileID: 1109055938182687643}
-  - component: {fileID: 2166647890562462796}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -185,26 +184,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2166647890562462796
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368096608817120402}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

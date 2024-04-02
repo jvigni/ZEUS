@@ -42,7 +42,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             _alreadyAiming = true;
         }
 
-        //_thirdPersonController.SetCombatCamera(true);
         if (withZoom)
             _aimCamera.gameObject.SetActive(true);
         
