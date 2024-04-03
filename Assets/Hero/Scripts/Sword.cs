@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
+    [SerializeField] int damage;
     [SerializeField] private bool isAttacking;
     [SerializeField] private int attack_combo_state = 0;
     [SerializeField] private int comboCountdown;
     Animator _animator;
+    bool hitting;
 
     void Awake()
     {
@@ -68,12 +70,14 @@ public class Sword : Weapon
     public override void OnAnimationHit()
     {
         Debug.Log("Anim hit");
+        hitting = true;
         //isAttacking = false; // TODO REMVE. must go on OnAnimationEnd only
     }
 
     public override void OnAnimationEnd()
     {
         Debug.Log("ANIM END");
+        hitting = false;
         isAttacking = false;
     }
 
@@ -94,5 +98,13 @@ public class Sword : Weapon
         base.OnUnequip();
         Wielder.GetComponent<ThirdPersonController>().SetCombatCamera(false);
         _animator.SetTrigger("sheathSword");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (!hitting) return;
+        var lifeform = other.GetComponent<Lifeform>();
+        if (lifeform)
+            lifeform.TakeDamage(damage, Wielder);
     }
 }

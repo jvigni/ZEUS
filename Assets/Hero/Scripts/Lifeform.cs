@@ -29,6 +29,7 @@ public class Lifeform : MonoBehaviour
 
     public void TakeDamage(int damage, GameObject attacker)
     {
+        Debug.Log($"HIT: {damage} dmg");
         hp -= damage;
         OnHealthLost?.Invoke(damage);
         if (!IsAlive())

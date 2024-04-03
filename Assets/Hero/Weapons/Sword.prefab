@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8044081844280011704}
   - component: {fileID: 8181961568966299093}
   - component: {fileID: 681088465066654628}
+  - component: {fileID: 6206035109741310713}
+  - component: {fileID: 4878396183935839945}
   m_Layer: 3
   m_Name: Sword
   m_TagString: Player
@@ -104,9 +106,9 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -124,9 +126,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wielder: {fileID: 0}
+  _thirdPersonController: {fileID: 0}
+  damage: 40
   isAttacking: 0
   attack_combo_state: 0
   comboCountdown: 0
+--- !u!65 &6206035109741310713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754881611852089524}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.036858045, y: 0.7800332, z: 0.16109592}
+  m_Center: {x: 0.000000016214468, y: 0.2720337, z: 0.000000014187659}
+--- !u!54 &4878396183935839945
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754881611852089524}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &566574976416480562
 PrefabInstance:
   m_ObjectHideFlags: 0
