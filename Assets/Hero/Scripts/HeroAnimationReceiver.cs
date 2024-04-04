@@ -5,6 +5,8 @@ using UnityEngine;
 // For animation events
 public class AnimationReceiver : MonoBehaviour
 {
+    [SerializeField] GameObject sword;
+
     void Hit() // Animation event
     {
         var equiped = GetComponentInParent<HeroEquipmentManager>().Equiped;
@@ -33,5 +35,10 @@ public class AnimationReceiver : MonoBehaviour
         //fireballSpell.Shoot();
         var fireballAbility = GetComponentInChildren<FireballAbility>();
         fireballAbility.ShootFireball();
+    }
+
+    void TakeSword()
+    {
+
     }
 }

@@ -90,14 +90,14 @@ public class Sword : Weapon
     {
         base.OnEquip();
         Wielder.GetComponent<ThirdPersonController>().SetCombatCamera(true);
-        _animator.SetTrigger("unsheatheSword");
+        _animator.SetTrigger("UnsheatheSword");
     }
 
     public override void OnUnequip()
     {
         base.OnUnequip();
         Wielder.GetComponent<ThirdPersonController>().SetCombatCamera(false);
-        _animator.SetTrigger("sheathSword");
+        _animator.SetTrigger("SheathSword");
     }
 
     void OnTriggerEnter(Collider other)

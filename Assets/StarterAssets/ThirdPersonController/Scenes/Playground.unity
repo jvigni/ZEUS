@@ -2516,11 +2516,6 @@ MonoBehaviour:
       x: 1
       y: 1
       z: 1
---- !u!4 &1324781756 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-  m_PrefabInstance: {fileID: 1253702221373440161}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1402827283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10100,86 +10095,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2134157474803655927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1253702221373440161
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2134157474803655927}
-    m_Modifications:
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2011602256171216460, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3354920424012102514, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_Name
-      value: FireballSpell
-      objectReference: {fileID: 0}
-    - target: {fileID: 3354920424012102514, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4773370583941603935, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: Wielder
-      value: 
-      objectReference: {fileID: 4267640400951855647}
-    - target: {fileID: 4773370583941603935, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-      propertyPath: spawnSpellPoint
-      value: 
-      objectReference: {fileID: 4860513771230494}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
---- !u!114 &1253702221373440162 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4773370583941603935, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
-  m_PrefabInstance: {fileID: 1253702221373440161}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f823b7fd8f26d24ea517294f51abb89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1938851254491843042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10416,7 +10331,6 @@ Transform:
   - {fileID: 892804222684818125}
   - {fileID: 981333082}
   - {fileID: 1565327348}
-  - {fileID: 1324781756}
   - {fileID: 229650777}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10810,6 +10724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6b481b807344e47a1eca6cf89da53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 0}
 --- !u!1001 &7074142473676850042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10894,7 +10809,6 @@ MonoBehaviour:
   equipables:
   - {fileID: 674816712542571048}
   - {fileID: 1161311381}
-  - {fileID: 1253702221373440162}
   Equiped: {fileID: 0}
 --- !u!114 &8206886942663569716
 MonoBehaviour:
