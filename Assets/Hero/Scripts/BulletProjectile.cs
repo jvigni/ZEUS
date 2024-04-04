@@ -9,9 +9,7 @@ public class BulletProjectile : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] int damage;
     [SerializeField] ParticleSystem hitExplosion;
-    [SerializeField] int secondsToSelfDestroy = 2;
     [SerializeField] int maxDistance = 500;
-    int _selfDestroyCounter;
 
     Rigidbody _bulletRigidbody;
     public GameObject _owner;
