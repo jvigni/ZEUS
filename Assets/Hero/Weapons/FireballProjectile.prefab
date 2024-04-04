@@ -47,11 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6068f9abae13f5a4f91b606e0c362d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  speed: 0.1
   damage: 100
-  hitExplosion: {fileID: 8651370029219405008, guid: fad9b1c360ed931469de00abf4b21975, type: 3}
-  secondsToSelfDestroy: 2
-  maxDistance: 100
+  hitExplosion: {fileID: 198009975391485926, guid: af558cb35c7b48d41bb203d3bdd66037, type: 3}
+  maxDistance: 10000
   _owner: {fileID: 0}
 --- !u!65 &2326693089694466416
 BoxCollider:

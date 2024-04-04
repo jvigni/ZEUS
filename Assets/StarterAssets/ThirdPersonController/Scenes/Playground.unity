@@ -10112,6 +10112,10 @@ PrefabInstance:
       propertyPath: Wielder
       value: 
       objectReference: {fileID: 4267640400951855647}
+    - target: {fileID: 4773370583941603935, guid: 161db320221481b4baeed476dcb5f0c8, type: 3}
+      propertyPath: spawnSpellPoint
+      value: 
+      objectReference: {fileID: 4860513771230494}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

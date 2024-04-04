@@ -9,6 +9,7 @@ public class FireballSpell : Weapon
     private ThirdPersonShooterController _shooterController;
     private Animator _animator;
     [SerializeField] BulletProjectile projectilePrefab;
+    [SerializeField] Transform spawnSpellPoint;
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class FireballSpell : Weapon
     internal void Shoot()
     {
         Debug.Log("CAST FIREBALL");
-        _shooterController.Shoot(projectilePrefab, transform);
+        _shooterController.Shoot(projectilePrefab, spawnSpellPoint);
         _animator.SetBool("Casting", false);
     }
 }
