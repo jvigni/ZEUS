@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,12 +31,15 @@ public class FireballSpell : Weapon
     public override void LClickIsPressed()
     {
         base.LClickIsPressed();
-        var casting = _animator.GetBool("Casting");
-        if (casting) return;
-
         _animator.SetBool("Casting", true);
+        //var casting = _animator.GetBool("Casting");
+        //if (casting) return;
+    }
+
+    internal void Shoot()
+    {
         Debug.Log("CAST FIREBALL");
         _shooterController.Shoot(projectilePrefab, transform);
-
+        _animator.SetBool("Casting", false);
     }
 }

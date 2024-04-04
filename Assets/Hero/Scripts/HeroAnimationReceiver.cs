@@ -26,4 +26,10 @@ public class AnimationReceiver : MonoBehaviour
     {
 
     }
+
+    void ShootFire()
+    {
+        var fireballSpell = (FireballSpell)GetComponent<HeroEquipmentManager>().Equiped;
+        fireballSpell.Shoot();
+    }
 }
