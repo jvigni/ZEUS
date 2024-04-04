@@ -29,14 +29,6 @@ public class FireballSpell : Weapon
         base.OnUnequip();
     }
 
-    public override void LClickIsPressed()
-    {
-        base.LClickIsPressed();
-        _animator.SetBool("Casting", true);
-        //var casting = _animator.GetBool("Casting");
-        //if (casting) return;
-    }
-
     internal void Shoot()
     {
         Debug.Log("CAST FIREBALL");

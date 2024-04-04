@@ -466,6 +466,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7380641784198657689, guid: 088075743c31fd64b8a49ca4551e3f04, type: 3}
   m_PrefabInstance: {fileID: 260846325}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &229650776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229650777}
+  - component: {fileID: 229650778}
+  m_Layer: 3
+  m_Name: FireballAbility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229650777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229650776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2134157474803655927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229650778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229650776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e613198c0128941a7df24424d2b96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 58116047725196838}
+  _shooterController: {fileID: 8206886942663569716}
+  _projectilePrefab: {fileID: 1120902782092427637, guid: ed0395b54002a7147b918aa673d9fa20, type: 3}
+  spawnSpellPoint: {fileID: 4142097500382692}
 --- !u!4 &232904335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7380641784198657689, guid: 088075743c31fd64b8a49ca4551e3f04, type: 3}
@@ -10369,6 +10417,7 @@ Transform:
   - {fileID: 981333082}
   - {fileID: 1565327348}
   - {fileID: 1324781756}
+  - {fileID: 229650777}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2240905448957446692
@@ -10487,6 +10536,7 @@ GameObject:
   - component: {fileID: 6982812147933622149}
   - component: {fileID: 8206886942663569717}
   - component: {fileID: 8206886942663569718}
+  - component: {fileID: 8206886942663569719}
   m_Layer: 3
   m_Name: Hero
   m_TagString: Player
@@ -10965,6 +11015,20 @@ MonoBehaviour:
   - m_Rig: {fileID: 913489277}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &8206886942663569719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267640400951855647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4e4bb745dfa6b42bcc80ee689352a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - {fileID: 229650778}
 --- !u!1001 &8345070700268369567
 PrefabInstance:
   m_ObjectHideFlags: 0
